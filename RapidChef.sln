@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidChef", "RapidChef.csproj", "{1536CA7F-CBA4-43F0-BC6D-18B1286B2839}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1536CA7F-CBA4-43F0-BC6D-18B1286B2839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1536CA7F-CBA4-43F0-BC6D-18B1286B2839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1536CA7F-CBA4-43F0-BC6D-18B1286B2839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1536CA7F-CBA4-43F0-BC6D-18B1286B2839}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {193B342E-F654-4829-BCD1-45189613F104}
+	EndGlobalSection
+EndGlobal
