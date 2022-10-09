@@ -2,6 +2,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <h3>Your application description page.</h3>
-    <p>Use this area to provide additional information.</p>
+    <h3>About RapidChef: Description page.</h3>
+    <%-- Use this area to provide additional information. --%>
+    <p>RapidChef is a senior project created at University of Houston: Clear Lake by a team of six students during Fall 2022.</p>
+    <p>The objective of the project is to find recipes for users that they can make right from home using only the ingredients they have available.</p>
 </asp:Content>
