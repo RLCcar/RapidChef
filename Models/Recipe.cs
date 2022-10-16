@@ -8,6 +8,7 @@ namespace RapidChef.Models
     public class Recipe
     {
         public int recipeID { get; set; }
+        public string recipeName { get; set; }
         public int postedByuser { get; set; }
         public string datePosted { get; set; }
         public string description { get; set; }

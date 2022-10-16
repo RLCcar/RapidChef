@@ -1,0 +1,135 @@
+﻿@model IEnumerable<RapidChef.Models.Recipe>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>Recipe</th>
+        <th>Created by User</th>
+        <th>Post Date</th>
+        <th>Description</th>
+        <th>Directions</th>
+
+        <th>
+            @* Tags 1-3 *@
+            @*@Html.DisplayNameFor(model => model.tag1)*@
+            Tags
+        </th>
+        <th></th>
+        <th></th>
+
+        <th>
+            @* Ingredients 1-15 *@
+            @*@Html.DisplayNameFor(model => model.ingrID1)*@
+            Ingredients
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+
+        <th></th> @* Used to hold "Edit", "Details", and "Delete" *@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.recipeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postedByuser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datePosted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.directions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tag1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tag2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tag3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID6)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID7)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID8)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID9)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID10)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID11)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID12)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID13)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID14)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingrID15)
+        </td>
+
+        @* Old Version of code I wanted to save just in case
+            <td>
+                @Html.DisplayFor(modelItem => item.recipeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.postedByuser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datePosted)
+            </td>*@
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.recipeID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.recipeID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.recipeID })*@
+        </td>
+    </tr>
+}
+
+</table>
