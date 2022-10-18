@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AccountView.aspx" />
     <Content Include="bin\RapidChef.dll" />
     <Content Include="bin\RapidChef.pdb" />
     <Content Include="Contact.aspx" />
@@ -243,6 +244,13 @@
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountView.aspx.cs">
+      <DependentUpon>AccountView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountView.aspx.designer.cs">
+      <DependentUpon>AccountView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
