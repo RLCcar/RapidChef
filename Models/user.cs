@@ -14,12 +14,12 @@ namespace RapidChef.Models
     
     public partial class user
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user()
-        {
-            this.favorites = new HashSet<favorites>();
-            this.favorites1 = new HashSet<favorites>();
-        }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        //public user()
+        //{
+        //    this.favorites = new HashSet<favorites>();
+        //    this.favorites1 = new HashSet<favorites>();
+        //}
     
         public int userID { get; set; }
         public string firstname { get; set; }
@@ -30,9 +30,9 @@ namespace RapidChef.Models
         public string user_type { get; set; }
         public string registrationDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<favorites> favorites { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<favorites> favorites1 { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<favorites> favorites { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<favorites> favorites1 { get; set; }
     }
 }
