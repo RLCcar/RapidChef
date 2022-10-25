@@ -24,20 +24,6 @@
             @*@Html.DisplayNameFor(model => model.ingrID1)*@
             Ingredients
         </th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
 
         <th></th> @* Used to hold "Edit", "Details", and "Delete" *@
     </tr>
@@ -69,49 +55,13 @@
             @Html.DisplayFor(modelItem => item.tag3)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ingrID1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID4)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID5)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID6)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID7)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID8)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID9)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID10)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID11)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID12)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID13)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID14)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ingrID15)
+            @foreach (string ingr in item.ingrIDs)
+            {
+                if (ingr != null)
+                {
+                    @Html.Display(ingr) 
+                }
+            }
         </td>
 
         @* Old Version of code I wanted to save just in case
@@ -125,9 +75,9 @@
                 @Html.DisplayFor(modelItem => item.datePosted)
             </td>*@
         <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.recipeID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.recipeID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.recipeID })*@
+            @Html.ActionLink("Edit", "Edit", new { id=item.recipeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.recipeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.recipeID })
         </td>
     </tr>
 }

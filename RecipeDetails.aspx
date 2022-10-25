@@ -16,7 +16,12 @@
     </head>
     <body>
         <form id="form2">
-            <h1>Recipe Name</h1>
+
+            <asp:GridView
+                ID="GridView1" runat="server" DataSourceID="RecipeDS">
+            </asp:GridView>
+
+            <%--<h1>Recipe Name</h1>
             <div></div>
 
             <h3>Description</h3>
@@ -26,7 +31,7 @@
             <div></div>
 
             <h3>Steps</h3>
-            <div></div>
+            <div></div>--%>
         </form>
     </body>
     </html>

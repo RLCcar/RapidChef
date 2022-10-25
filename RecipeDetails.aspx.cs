@@ -11,7 +11,9 @@ namespace RapidChef
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int recipeID = Convert.ToInt32(Request.QueryString["ID"]);
+            RecipeDS.SelectParameters.Add("ID", Request.QueryString["ID"]);
+
+            GridView1.DataBind();
         }
     }
 }
