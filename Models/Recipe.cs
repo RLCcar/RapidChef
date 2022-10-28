@@ -9,23 +9,42 @@ using MySql.Data.MySqlClient;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace RapidChef.Models
 {
     public class Recipe
     {
         public int recipeID { get; set; }
+
+        [Required]
+        [StringLength(45)]
         public string recipeName { get; set; }
-        public int postedByuser { get; set; }
+
+        public int? postedByuser { get; set; }
+
+        //[DataType(DataType.Date)] // Currently unapplicable, as datePosted is a string in the Recipe table
         public string datePosted { get; set; }
+
+        [Required]
+        [StringLength(500)]
         public string description { get; set; }
+
+        [Required]
+        [StringLength(1000)]
         public string directions { get; set; }
+
         public int? tag1 { get; set; }
+
         public int? tag2 { get; set; }
+
         public int? tag3 { get; set; }
+
+        [Remote(action: "VerifyIngredient", controller: "Recipe")]
         public string[] ingrIDs { get; set; }
 
-        //static ConnectionStringSettings conn = ConfigurationManager.ConnectionStrings["Ingredients"];
+        //static ConnectionStringSettings conn = ConfigurationManager.ConnectionStrings["Ingredients"]; // Used with Microsoft SQL
 
         private static MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
                                                                     "pwd=Sce7269680!!; database=senf22g7");
@@ -33,6 +52,7 @@ namespace RapidChef.Models
         static MySqlCommand list_cmd   = new MySqlCommand("SELECT * FROM senf22g7.recipe", server);
         static MySqlCommand detail_cmd = new MySqlCommand("SELECT * FROM senf22g7.recipe WHERE recipeID = @ID", server);
         static MySqlCommand create_cmd = new MySqlCommand("INSERT INTO `senf22g7`.`recipe` (`recipeName`) "); /* Work In Progress */
+        static MySqlCommand edit_cmd   = new MySqlCommand(""); /* Work In Progress */
         static MySqlCommand delete_cmd = new MySqlCommand(""); /* Work In Progress */
 
         public Recipe()
@@ -44,7 +64,7 @@ namespace RapidChef.Models
         {
             ingrIDs = new string[15];
 
-            // Using Microsoft's way
+            #region Using Microsoft SQL (Unused)
             //SqlDataSource server = new SqlDataSource(conn.ConnectionString, "SELECT * FROM recipe WHERE recipeID=@ID");
 
             //try
@@ -79,8 +99,9 @@ namespace RapidChef.Models
             //{
             //    server.Dispose();
             //}
+            #endregion
 
-            // Using MySQL's way
+            #region Using MySQL
             detail_cmd.Parameters.AddWithValue("@ID", id);
 
             server.Open();
@@ -90,12 +111,14 @@ namespace RapidChef.Models
             {
                 recipeID = id;
                 recipeName = rdr.GetString(1);
-                postedByuser = rdr.GetInt32(2);
-                if (rdr.IsDBNull(3))
-                    datePosted = rdr.GetString(3);
+
+                if (!rdr.IsDBNull(2))
+                    postedByuser = rdr.GetInt32(2);
+                if (!rdr.IsDBNull(3))
+                    datePosted   = rdr.GetString(3);
 
                 description = rdr.GetString(4);
-                directions = rdr.GetString(5);
+                directions  = rdr.GetString(5);
 
                 if (!rdr.IsDBNull(6))
                     tag1 = rdr.GetInt32(6);
@@ -117,6 +140,7 @@ namespace RapidChef.Models
             server.Close();
 
             detail_cmd.Parameters.Clear();
+            #endregion
         }
 
         public static IEnumerable<Recipe> GetAllRecipes()
@@ -131,14 +155,16 @@ namespace RapidChef.Models
             {
                 Recipe next = new Recipe();
 
-                next.recipeID = rdr.GetInt32(0);
+                next.recipeID   = rdr.GetInt32(0);
                 next.recipeName = rdr.GetString(1);
-                next.postedByuser = rdr.GetInt32(2);
-                if (rdr.IsDBNull(3))
-                    next.datePosted = rdr.GetString(3);
+
+                if (!rdr.IsDBNull(2))
+                    next.postedByuser = rdr.GetInt32(2);
+                if (!rdr.IsDBNull(3))
+                    next.datePosted   = rdr.GetString(3);
 
                 next.description = rdr.GetString(4);
-                next.directions = rdr.GetString(5);
+                next.directions  = rdr.GetString(5);
 
                 if (!rdr.IsDBNull(6))
                     next.tag1 = rdr.GetInt32(6);
@@ -166,12 +192,24 @@ namespace RapidChef.Models
 
         public void AddRecipe() /* Work In Progress */
         {
-            
+            /* NOTE: Unless you want to try using MySQLDataAdapter, MySQLCommandBuilder, or any other class,
+             * the command strings have to be built based on the input from the user. */
+            create_cmd.ExecuteNonQuery();
+        }
+
+        public void EditRecipe() /* Work In Progress */
+        {
+            /* NOTE: Unless you want to try using MySQLDataAdapter, MySQLCommandBuilder, or any other class,
+             * the command strings have to be built based on the input from the user. */
+            edit_cmd.ExecuteNonQuery();
         }
 
         public void DeleteRecipe() /* Work In Progress */
         {
-
+            /* NOTE: Unless you want to try using MySQLDataAdapter, MySQLCommandBuilder, or any other class,
+             * the command strings have to be built based on the input from the user. */
+            delete_cmd.ExecuteNonQuery();
         }
+
     }
 }

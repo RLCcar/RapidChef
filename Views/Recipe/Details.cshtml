@@ -45,39 +45,49 @@
                 @Html.DisplayFor(model => model.tag3)
             }
         </dd>
+    </dl>
 
-        <dt>
-            Ingredients
-        </dt>
+    <hr />
 
+    <h4>
+        Ingredients
+    </h4>
+
+    <ul>
         @foreach (string ingr in Model.ingrIDs)
         {
             if (ingr != null)
             {
-                <dd>
+                <li>
                     @Html.Display(ingr)
-                </dd>
+                </li>
+            }
+            else
+            {
+                break;
             }
         }
+    </ul>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
+    <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+    <h4>Description</h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.directions)
-        </dt>
+    <p>
+        @Html.DisplayFor(model => model.description)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.directions)
-        </dd>
+    <hr />
 
-    </dl>
+    <h4>Directions</h4>
+
+    <p>
+        @Html.DisplayFor(model => model.directions)
+    </p>
 </div>
+
+<hr />
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.recipeID }) |
     @Html.ActionLink("Back to List", "Index")

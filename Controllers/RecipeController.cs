@@ -15,16 +15,12 @@ namespace RapidChef.Controllers
         //private string SQLConnectStr = "";
 
         // GET: Recipe
-        MySqlCommand list_cmd = new MySqlCommand("SELECT * FROM recipe", server);
-
         public ActionResult Index() // string Index()
         {
             return View(Recipe.GetAllRecipes());
         }
 
         // GET: Recipe/Details/5
-        MySqlCommand detail_cmd = new MySqlCommand("SELECT * FROM recipe WHERE recipeID = @ID", server);
-
         public ActionResult Details(int id)
         {
             Recipe recipe = new Recipe(id);
@@ -33,8 +29,6 @@ namespace RapidChef.Controllers
         }
 
         // GET: Recipe/Create
-        MySqlCommand create_cmd; /* Work In Progress */
-
         public ActionResult Create()
         {
             return View();
@@ -46,9 +40,16 @@ namespace RapidChef.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                if (!ModelState.IsValid)
+                {
+                    return View(collection);
+                }
 
-                return RedirectToAction("Index");
+                /* Create the Recipe Object */
+
+                /* Add the Recipe to the database */
+
+                return RedirectToAction("Details"); /* How to include the new recipe ID? */
             }
             catch
             {
@@ -71,7 +72,7 @@ namespace RapidChef.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             catch
             {
@@ -80,8 +81,6 @@ namespace RapidChef.Controllers
         }
 
         // GET: Recipe/Delete/5
-        MySqlCommand delete_cmd; /* Work In Progress */
-
         public ActionResult Delete(int id)
         {
             return View();
@@ -101,6 +100,22 @@ namespace RapidChef.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult VerifyIngredient(string[] ingrIDs)
+        {
+            //MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
+            //                                             "pwd=Sce7269680!!; database=senf22g7");
+            int cnt = 0;
+            foreach (string ingr in ingrIDs)
+            {
+                cnt++;
+            }
+
+            if (cnt < 3)
+                return Json("You need at least 3 ingredients in the recipe");
+            else
+                return Json(true);
         }
     }
 }
