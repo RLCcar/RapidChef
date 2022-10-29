@@ -15,10 +15,12 @@
 <asp:CheckBoxList ID="CheckBoxList2" runat="server" DataSourceID="Ingredients" DataTextField="name" DataValueField="name">
      </asp:CheckBoxList>
      <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Ingredients %>" ProviderName="<%$ ConnectionStrings:Ingredients.ProviderName %>" SelectCommand="SELECT name, category FROM ingredients WHERE (category = 'plant')"></asp:SqlDataSource>
-	 <br />
+	 <div>
 	 <asp:Button ID="Button" runat="server" OnClick="Button1_Click1" Text="Search" />
-	 <br />
-	 <br />
+	 	 <br />
+		 <br />
 	 <asp:Label ID="Label1" runat="server" OnDataBinding="Label1_DataBinding" Text="Query Stringbuilder Results"></asp:Label>
+	 </div>
+	 <br />
 </div>
 </asp:Content>
