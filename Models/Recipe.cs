@@ -18,7 +18,7 @@ namespace RapidChef.Models
     {
         public int recipeID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Recipe Name is Required")]
         [StringLength(45)]
         public string recipeName { get; set; }
 
@@ -142,6 +142,11 @@ namespace RapidChef.Models
             detail_cmd.Parameters.Clear();
             #endregion
         }
+
+        //public Recipe(FormCollection collection)
+        //{
+        //    recipeName = collection;
+        //}
 
         public static IEnumerable<Recipe> GetAllRecipes()
         {

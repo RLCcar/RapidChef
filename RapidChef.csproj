@@ -286,7 +286,6 @@
     </Compile>
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\review.cs" />
-    <Compile Include="Models\tag.cs" />
     <Compile Include="Models\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeDetails.aspx.cs">
@@ -336,6 +335,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Recipe\Details.cshtml" />
+    <Content Include="Views\Recipe\Create.cshtml" />
+    <Content Include="Views\Recipe\CreateT.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

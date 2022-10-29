@@ -29,32 +29,42 @@ namespace RapidChef.Controllers
         }
 
         // GET: Recipe/Create
-        public ActionResult Create()
+        public ActionResult CreateT()
         {
             return View();
         }
 
         // POST: Recipe/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateT(FormCollection collection)
         {
             try
             {
-                if (!ModelState.IsValid)
+                System.Diagnostics.Debug.WriteLine("Beginning Try");
+
+                /* TODO: Create the Recipe Object (to hold FormCollection contents??) */
+                //Recipe newRecipe = Recipe(collection);
+
+                /* TODO: How is the model getting validated?? */
+                if (ModelState.IsValid)
                 {
+                    System.Diagnostics.Debug.WriteLine("Returning View");
                     return View(collection);
                 }
 
-                /* Create the Recipe Object */
+                System.Diagnostics.Debug.WriteLine("Validated and Approved the Request");
 
                 /* Add the Recipe to the database */
 
-                return RedirectToAction("Details"); /* How to include the new recipe ID? */
+                /* Grab the new recipe's ID number */
+
+                return RedirectToAction("Details"); /* Include the new recipe ID (How?) */
             }
             catch
             {
                 // Add an extra warning message
-                return View();
+                System.Diagnostics.Debug.WriteLine("ERROR: An exception occurred!");
+                return View(collection);
             }
         }
 
