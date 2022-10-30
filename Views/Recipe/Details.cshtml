@@ -1,0 +1,94 @@
+﻿@model RapidChef.Models.Recipe
+
+<div>
+    <h1>@Html.DisplayFor(model => model.recipeName)</h1>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Posted by
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postedByuser)
+        </dd>
+
+        <dt>
+            Posted at
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datePosted)
+        </dd>
+
+        <dt>
+            Tags
+        </dt>
+
+        <dd>
+            @if (Model.tag1 != null)
+            {
+                @Html.DisplayFor(model => model.tag1)
+            }
+        </dd>
+
+        <dd>
+            @if (Model.tag2 != null)
+            {
+                @Html.DisplayFor(model => model.tag2)
+            }
+        </dd>
+
+        <dd>
+            @if (Model.tag3 != null)
+            {
+                @Html.DisplayFor(model => model.tag3)
+            }
+        </dd>
+    </dl>
+
+    <hr />
+
+    <h4>
+        Ingredients
+    </h4>
+
+    <ul>
+        @foreach (string ingr in Model.ingrIDs)
+        {
+            if (ingr != null)
+            {
+                <li>
+                    @Html.Display(ingr)
+                </li>
+            }
+            else
+            {
+                break;
+            }
+        }
+    </ul>
+
+    <hr />
+
+    <h4>Description</h4>
+
+    <p>
+        @Html.DisplayFor(model => model.description)
+    </p>
+
+    <hr />
+
+    <h4>Directions</h4>
+
+    <p>
+        @Html.DisplayFor(model => model.directions)
+    </p>
+</div>
+
+<hr />
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.recipeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

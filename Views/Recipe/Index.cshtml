@@ -1,0 +1,85 @@
+﻿@model IEnumerable<RapidChef.Models.Recipe>
+
+<table class="table">
+    <tr>
+        <th>Recipe</th>
+        <th>Created by User</th>
+        <th>Post Date</th>
+        <th>Description</th>
+        <th>Directions</th>
+
+        <th>
+            @* Tags 1-3 *@
+            @*@Html.DisplayNameFor(model => model.tag1)*@
+            Tags
+        </th>
+        <th></th>
+        <th></th>
+
+        <th>
+            @* Ingredients 1-15 *@
+            @*@Html.DisplayNameFor(model => model.ingrID1)*@
+            Ingredients
+        </th>
+
+        <th></th> @* Used to hold "Edit", "Details", and "Delete" *@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.recipeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postedByuser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datePosted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.directions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tag1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tag2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tag3)
+        </td>
+        <td>
+            @foreach (string ingr in item.ingrIDs)
+            {
+                if (ingr != null)
+                {
+                    @Html.Display(ingr) 
+                }
+            }
+        </td>
+
+        @* Old Version of code I wanted to save just in case
+            <td>
+                @Html.DisplayFor(modelItem => item.recipeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.postedByuser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datePosted)
+            </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.recipeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.recipeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.recipeID })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Create New Recipe", "Create")
+</p>
