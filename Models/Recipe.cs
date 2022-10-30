@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Mvc;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace RapidChef.Models
@@ -18,8 +19,9 @@ namespace RapidChef.Models
     {
         public int recipeID { get; set; }
 
-        [Required(ErrorMessage ="Recipe Name is Required")]
+        [Required]
         [StringLength(45)]
+        [DisplayName("Name")]
         public string recipeName { get; set; }
 
         public int? postedByuser { get; set; }
@@ -41,7 +43,7 @@ namespace RapidChef.Models
 
         public int? tag3 { get; set; }
 
-        [Remote(action: "VerifyIngredient", controller: "Recipe")]
+        //[Remote(action: "VerifyIngredient", controller: "Recipe")]
         public string[] ingrIDs { get; set; }
 
         //static ConnectionStringSettings conn = ConfigurationManager.ConnectionStrings["Ingredients"]; // Used with Microsoft SQL
@@ -51,9 +53,8 @@ namespace RapidChef.Models
 
         static MySqlCommand list_cmd   = new MySqlCommand("SELECT * FROM senf22g7.recipe", server);
         static MySqlCommand detail_cmd = new MySqlCommand("SELECT * FROM senf22g7.recipe WHERE recipeID = @ID", server);
-        static MySqlCommand create_cmd = new MySqlCommand("INSERT INTO `senf22g7`.`recipe` (`recipeName`) "); /* Work In Progress */
-        static MySqlCommand edit_cmd   = new MySqlCommand(""); /* Work In Progress */
-        static MySqlCommand delete_cmd = new MySqlCommand(""); /* Work In Progress */
+        static MySqlCommand create_cmd = new MySqlCommand("INSERT INTO senf22g7.recipe (recipeName) ", server); /* Work In Progress */
+        static MySqlCommand edit_cmd   = new MySqlCommand("", server); /* Work In Progress */
 
         public Recipe()
         {
@@ -145,7 +146,26 @@ namespace RapidChef.Models
 
         //public Recipe(FormCollection collection)
         //{
-        //    recipeName = collection;
+        //    recipeName  = collection["recipeName"];
+        //    description = collection["description"];
+        //    directions  = collection["directions"];
+
+        //    if (collection["tag1"] != null)
+        //        tag1 = Convert.ToInt32(collection["tag1"]);
+
+        //    if (collection["tag2"] != null)
+        //        tag2 = Convert.ToInt32(collection["tag2"]);
+
+        //    if (collection["tag3"] != null)
+        //        tag3 = Convert.ToInt32(collection["tag3"]);
+
+        //    ingrIDs = new string[15];
+        //    /* Set up some preset ingrIDs for ease of testing */
+        //    ingrIDs[0] = "lizard";
+        //    ingrIDs[1] = "chicken";
+        //    ingrIDs[2] = "apple";
+
+        //    datePosted = DateTime.Now.ToString("yyyy-MM-dd"); //Gets current time in right format
         //}
 
         public static IEnumerable<Recipe> GetAllRecipes()
@@ -197,23 +217,44 @@ namespace RapidChef.Models
 
         public void AddRecipe() /* Work In Progress */
         {
+            datePosted = DateTime.Now.ToString("yyyy-MM-dd"); //Gets current time in right format
+
             /* NOTE: Unless you want to try using MySQLDataAdapter, MySQLCommandBuilder, or any other class,
              * the command strings have to be built based on the input from the user. */
+            server.Open();
+
             create_cmd.ExecuteNonQuery();
+
+            server.Close();
         }
 
         public void EditRecipe() /* Work In Progress */
         {
             /* NOTE: Unless you want to try using MySQLDataAdapter, MySQLCommandBuilder, or any other class,
              * the command strings have to be built based on the input from the user. */
+            server.Open();
+
             edit_cmd.ExecuteNonQuery();
+
+            server.Close();
         }
 
-        public void DeleteRecipe() /* Work In Progress */
+        static MySqlCommand delete_cmd = new MySqlCommand("DELETE FROM senf22g7.recipe WHERE recipeID = @ID", server);
+        public static void DeleteRecipe(int id)
         {
-            /* NOTE: Unless you want to try using MySQLDataAdapter, MySQLCommandBuilder, or any other class,
-             * the command strings have to be built based on the input from the user. */
-            delete_cmd.ExecuteNonQuery();
+            server.Open();
+
+            System.Diagnostics.Debug.WriteLine("Deleting Recipe #" + Convert.ToString(id));
+
+            delete_cmd.Parameters.AddWithValue("@ID", id);
+
+            int affect = delete_cmd.ExecuteNonQuery();
+
+            System.Diagnostics.Debug.WriteLine(Convert.ToString(affect) + " Lines Affected");
+
+            server.Close();
+
+            delete_cmd.Parameters.Clear();
         }
 
     }

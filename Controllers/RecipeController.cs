@@ -23,38 +23,38 @@ namespace RapidChef.Controllers
         // GET: Recipe/Details/5
         public ActionResult Details(int id)
         {
-            Recipe recipe = new Recipe(id);
-
-            return View(recipe);
+            return View(new Recipe(id));
         }
 
         // GET: Recipe/Create
-        public ActionResult CreateT()
+        public ActionResult Create()
         {
             return View();
         }
 
         // POST: Recipe/Create
         [HttpPost]
-        public ActionResult CreateT(FormCollection collection)
+        public ActionResult Create(Recipe newRecipe)
         {
+            System.Diagnostics.Debug.WriteLine("Beginning Try");
+
+            /* TODO: Create the Recipe Object (to hold FormCollection contents??) */
+            //Recipe newRecipe = new Recipe(collection);
+
             try
             {
-                System.Diagnostics.Debug.WriteLine("Beginning Try");
+                TryUpdateModel<Recipe>(newRecipe);
 
-                /* TODO: Create the Recipe Object (to hold FormCollection contents??) */
-                //Recipe newRecipe = Recipe(collection);
-
-                /* TODO: How is the model getting validated?? */
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    System.Diagnostics.Debug.WriteLine("Returning View");
-                    return View(collection);
+                    System.Diagnostics.Debug.WriteLine("Failed; Returning View");
+                    return View(newRecipe);
                 }
 
-                System.Diagnostics.Debug.WriteLine("Validated and Approved the Request");
+                System.Diagnostics.Debug.WriteLine("Validated; Adding to Database");
 
                 /* Add the Recipe to the database */
+                newRecipe.AddRecipe();
 
                 /* Grab the new recipe's ID number */
 
@@ -64,7 +64,7 @@ namespace RapidChef.Controllers
             {
                 // Add an extra warning message
                 System.Diagnostics.Debug.WriteLine("ERROR: An exception occurred!");
-                return View(collection);
+                return View(newRecipe);
             }
         }
 
@@ -93,7 +93,7 @@ namespace RapidChef.Controllers
         // GET: Recipe/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(new Recipe(id));
         }
 
         // POST: Recipe/Delete/5
@@ -102,30 +102,30 @@ namespace RapidChef.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                Recipe.DeleteRecipe(id);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(id);
             }
         }
 
-        public ActionResult VerifyIngredient(string[] ingrIDs)
-        {
-            //MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
-            //                                             "pwd=Sce7269680!!; database=senf22g7");
-            int cnt = 0;
-            foreach (string ingr in ingrIDs)
-            {
-                cnt++;
-            }
+        //public ActionResult VerifyIngredient(string[] ingrIDs)
+        //{
+        //    //MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
+        //    //                                             "pwd=Sce7269680!!; database=senf22g7");
+        //    int cnt = 0;
+        //    foreach (string ingr in ingrIDs)
+        //    {
+        //        cnt++;
+        //    }
 
-            if (cnt < 3)
-                return Json("You need at least 3 ingredients in the recipe");
-            else
-                return Json(true);
-        }
+        //    if (cnt < 3)
+        //        return Json("You need at least 3 ingredients in the recipe");
+        //    else
+        //        return Json(true);
+        //}
     }
 }

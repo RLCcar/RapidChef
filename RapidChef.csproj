@@ -339,7 +339,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Recipe\Details.cshtml" />
     <Content Include="Views\Recipe\Create.cshtml" />
-    <Content Include="Views\Recipe\CreateT.cshtml" />
+    <Content Include="Views\Recipe\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
