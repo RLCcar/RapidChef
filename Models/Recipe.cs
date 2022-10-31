@@ -24,17 +24,21 @@ namespace RapidChef.Models
         [DisplayName("Name")]
         public string recipeName { get; set; }
 
+        [DisplayName("Posted By")]
         public int? postedByuser { get; set; }
 
         //[DataType(DataType.Date)] // Currently unapplicable, as datePosted is a string in the Recipe table
+        [DisplayName("Posted On")]
         public string datePosted { get; set; }
 
         [Required]
         [StringLength(500)]
+        [DisplayName("Description")]
         public string description { get; set; }
 
         [Required]
         [StringLength(1000)]
+        [DisplayName("Directions")]
         public string directions { get; set; }
 
         public int? tag1 { get; set; }
@@ -44,6 +48,7 @@ namespace RapidChef.Models
         public int? tag3 { get; set; }
 
         //[Remote(action: "VerifyIngredient", controller: "Recipe")]
+        [DisplayName("Ingredients")]
         public string[] ingrIDs { get; set; }
 
         //static ConnectionStringSettings conn = ConfigurationManager.ConnectionStrings["Ingredients"]; // Used with Microsoft SQL
@@ -53,14 +58,13 @@ namespace RapidChef.Models
 
         static MySqlCommand list_cmd   = new MySqlCommand("SELECT * FROM senf22g7.recipe", server);
         static MySqlCommand detail_cmd = new MySqlCommand("SELECT * FROM senf22g7.recipe WHERE recipeID = @ID", server);
-        static MySqlCommand create_cmd = new MySqlCommand("INSERT INTO senf22g7.recipe (recipeName) ", server); /* Work In Progress */
-        static MySqlCommand edit_cmd   = new MySqlCommand("", server); /* Work In Progress */
 
         public Recipe()
         {
             ingrIDs = new string[15];
         }
 
+        /* Constructor - Grabs Recipe from database using recipeID */
         public Recipe(int id)
         {
             ingrIDs = new string[15];
@@ -168,6 +172,7 @@ namespace RapidChef.Models
         //    datePosted = DateTime.Now.ToString("yyyy-MM-dd"); //Gets current time in right format
         //}
 
+        /* GetAllRecipes - Get all the recipes in the database */
         public static IEnumerable<Recipe> GetAllRecipes()
         {
             List<Recipe> list = new List<Recipe>();
@@ -191,6 +196,7 @@ namespace RapidChef.Models
                 next.description = rdr.GetString(4);
                 next.directions  = rdr.GetString(5);
 
+                //Tags
                 if (!rdr.IsDBNull(6))
                     next.tag1 = rdr.GetInt32(6);
                 if (!rdr.IsDBNull(7))
@@ -198,6 +204,7 @@ namespace RapidChef.Models
                 if (!rdr.IsDBNull(8))
                     next.tag3 = rdr.GetInt32(8);
 
+                //Ingredients
                 for (int i = 1; i < 15; i++)
                 {
                     if (rdr.IsDBNull(i + 8))
@@ -209,29 +216,119 @@ namespace RapidChef.Models
                 list.Add(next);
             }
 
+            // Close the Reader and Server
             rdr.Close();
             server.Close();
 
             return (list);
         }
 
-        public void AddRecipe() /* Work In Progress */
+        public bool UploadRecipe()
         {
-            datePosted = DateTime.Now.ToString("yyyy-MM-dd"); //Gets current time in right format
+            bool uploaded = false;
 
-            /* NOTE: Unless you want to try using MySQLDataAdapter, MySQLCommandBuilder, or any other class,
-             * the command strings have to be built based on the input from the user. */
-            server.Open();
+            /* NOTE:
+             * optional attributes may be left null, so the custom create script only adds those provided by the user.
+             * 
+             * We can try using another class like MySQLDataAdapter and MySQLCommandBuilder to build this command, if needed.
+             */
+            string cmd_top = "INSERT INTO senf22g7.recipe (recipeName, datePosted, description, directions";
+            string cmd_bottom = ") VALUES (@recipeName, @datePosted, @description, @directions";
 
-            create_cmd.ExecuteNonQuery();
+            //postedByuser = Session["userID"] // TODO: Get postedByuser if logged in (using session variables)
+            //cmd_top += ", postedByuser";
+            //cmd_bottom += ", \'" + Convert.ToString(postedByuser) + "\'";
 
-            server.Close();
+            datePosted = DateTime.Now.ToString("yyyy-MM-dd"); // TODO: Will change if datePosted changes to DateTime type
+
+            if (tag1 != null)
+            {
+                cmd_top += ", tag1";
+                cmd_bottom += ", @tag1";
+            }
+
+            if (tag2 != null)
+            {
+                cmd_top += ", tag2";
+                cmd_bottom += ", @tag2";
+            }
+
+            if (tag3 != null)
+            {
+                cmd_top += ", tag3";
+                cmd_bottom += ", @tag3";
+            }
+
+            /* DEBUG: Set up some preset ingrIDs and test later */
+            ingrIDs[0] = "lizard";
+            ingrIDs[1] = "chicken";
+            ingrIDs[2] = "apple";
+
+            for (int i = 0; i < 15; i++)
+            {
+                if (ingrIDs[i] == null)
+                    break;
+
+                cmd_top += ", Ingredient" + Convert.ToString(i + 1);
+                cmd_bottom += ", @Ingredient" + Convert.ToString(i + 1);
+            }
+
+            System.Diagnostics.Debug.WriteLine(cmd_top + cmd_bottom + ");"); // Test if the script is built correctly
+
+            /* Complete the cmd with parameters */
+            MySqlCommand cmd = new MySqlCommand(cmd_top + cmd_bottom + ");", server);
+
+            //Required
+            cmd.Parameters.AddWithValue("@recipeName", recipeName);
+            cmd.Parameters.AddWithValue("@datePosted", datePosted);
+            cmd.Parameters.AddWithValue("@description", description);
+            cmd.Parameters.AddWithValue("@directions", directions);
+
+            if (tag1 != null)
+                cmd.Parameters.AddWithValue("@tag1", tag1);
+
+            if (tag2 != null)
+                cmd.Parameters.AddWithValue("@tag2", tag2);
+
+            if (tag3 != null)
+                cmd.Parameters.AddWithValue("@tag3", tag3);
+
+            for (int i = 0; i < 15; i++)
+            {
+                if (ingrIDs[i] == null)
+                    break;
+
+                cmd.Parameters.AddWithValue("@Ingredient" + Convert.ToString(i + 1), ingrIDs[i]);
+            }
+
+            try
+            {
+                server.Open();
+
+                int lines = cmd.ExecuteNonQuery();
+
+                if (lines > 0)
+                    uploaded = true;
+            }
+            finally
+            {
+                server.Close();
+            }
+
+            // TODO: How do I get the new recipe's ID?
+
+            return uploaded;
         }
 
         public void EditRecipe() /* Work In Progress */
         {
-            /* NOTE: Unless you want to try using MySQLDataAdapter, MySQLCommandBuilder, or any other class,
-             * the command strings have to be built based on the input from the user. */
+            /* NOTE:
+             * not all attributes will be updated, so the custom edit script only edits those specified by the user.
+             * 
+             * We can try using another class like MySQLDataAdapter and MySQLCommandBuilder to build this command, if needed.
+             */
+            MySqlCommand edit_cmd = new MySqlCommand("", server); /* Work In Progress */
+
             server.Open();
 
             edit_cmd.ExecuteNonQuery();
@@ -244,13 +341,14 @@ namespace RapidChef.Models
         {
             server.Open();
 
-            System.Diagnostics.Debug.WriteLine("Deleting Recipe #" + Convert.ToString(id));
-
             delete_cmd.Parameters.AddWithValue("@ID", id);
 
-            int affect = delete_cmd.ExecuteNonQuery();
+            int lines = delete_cmd.ExecuteNonQuery();
 
-            System.Diagnostics.Debug.WriteLine(Convert.ToString(affect) + " Lines Affected");
+            //if (lines == 0)
+            //{
+            //    // An error occured; how to illustrate this error?
+            //}
 
             server.Close();
 

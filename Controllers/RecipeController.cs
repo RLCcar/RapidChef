@@ -12,7 +12,6 @@ namespace RapidChef.Controllers
     {
         private static MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
                                                              "pwd=Sce7269680!!; database=senf22g7");
-        //private string SQLConnectStr = "";
 
         // GET: Recipe
         public ActionResult Index() // string Index()
@@ -36,34 +35,44 @@ namespace RapidChef.Controllers
         [HttpPost]
         public ActionResult Create(Recipe newRecipe)
         {
-            System.Diagnostics.Debug.WriteLine("Beginning Try");
+            System.Diagnostics.Debug.WriteLine("Validating Recipe...");
 
-            /* TODO: Create the Recipe Object (to hold FormCollection contents??) */
-            //Recipe newRecipe = new Recipe(collection);
-
+            /* Validate the uploaded Recipe Object */
             try
             {
                 TryUpdateModel<Recipe>(newRecipe);
 
                 if (!ModelState.IsValid)
                 {
-                    System.Diagnostics.Debug.WriteLine("Failed; Returning View");
+                    System.Diagnostics.Debug.WriteLine("Fail; Returning to Form...");
+
                     return View(newRecipe);
                 }
 
-                System.Diagnostics.Debug.WriteLine("Validated; Adding to Database");
+                System.Diagnostics.Debug.WriteLine("Success; Uploading to Database...");
 
-                /* Add the Recipe to the database */
-                newRecipe.AddRecipe();
+                /* Upload the Recipe to the database */
+                if (newRecipe.UploadRecipe())
+                {
+                    /* Grab the new recipe's ID number */
+                    //int id = 0;
 
-                /* Grab the new recipe's ID number */
+                    System.Diagnostics.Debug.WriteLine("Success; Returning View...");
 
-                return RedirectToAction("Details"); /* Include the new recipe ID (How?) */
+                    return RedirectToAction("Index"); //("Details", id);
+                }
+                else /* Uploading Failed */
+                {
+                    System.Diagnostics.Debug.WriteLine("Fail; Returning to Form...");
+
+                    return View(newRecipe);
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                // Add an extra warning message
-                System.Diagnostics.Debug.WriteLine("ERROR: An exception occurred!");
+                // Post the exception error to the form
+                ViewBag.Exception = ex.Message;
+
                 return View(newRecipe);
             }
         }

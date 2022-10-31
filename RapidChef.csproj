@@ -220,8 +220,6 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Ingredients.css" />
     <Content Include="loginform.css" />
-    <Content Include="RecipeDetails.aspx" />
-    <Content Include="RecipeList.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -291,20 +289,6 @@
     <Compile Include="Models\review.cs" />
     <Compile Include="Models\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecipeDetails.aspx.cs">
-      <DependentUpon>RecipeDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RecipeDetails.aspx.designer.cs">
-      <DependentUpon>RecipeDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="RecipeList.aspx.cs">
-      <DependentUpon>RecipeList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RecipeList.aspx.designer.cs">
-      <DependentUpon>RecipeList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -342,14 +326,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-
     <Content Include="Views\Recipe\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Recipe\Details.cshtml" />
     <Content Include="Views\Recipe\Create.cshtml" />
     <Content Include="Views\Recipe\Delete.cshtml" />
-
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

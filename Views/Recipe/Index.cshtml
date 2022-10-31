@@ -2,24 +2,20 @@
 
 <table class="table">
     <tr>
-        <th>Recipe</th>
-        <th>Created by User</th>
-        <th>Post Date</th>
-        <th>Description</th>
-        <th>Directions</th>
+        <th>@Html.DisplayNameFor(model => model.recipeName)</th>
+        <th>@Html.DisplayNameFor(model => model.postedByuser)</th>
+        <th>@Html.DisplayNameFor(model => model.datePosted)</th>
+        <th>@Html.DisplayNameFor(model => model.description)</th>
+        <th>@Html.DisplayNameFor(model => model.directions)</th>
 
         <th>
             @* Tags 1-3 *@
-            @*@Html.DisplayNameFor(model => model.tag1)*@
             Tags
         </th>
-        <th></th>
-        <th></th>
 
         <th>
             @* Ingredients 1-15 *@
-            @*@Html.DisplayNameFor(model => model.ingrID1)*@
-            Ingredients
+            @Html.DisplayNameFor(model => model.ingrIDs)
         </th>
 
         <th></th> @* Used to hold "Edit", "Details", and "Delete" *@
@@ -44,11 +40,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tag1)
-        </td>
-        <td>
+
             @Html.DisplayFor(modelItem => item.tag2)
-        </td>
-        <td>
+
             @Html.DisplayFor(modelItem => item.tag3)
         </td>
         <td>
@@ -61,16 +55,6 @@
             }
         </td>
 
-        @* Old Version of code I wanted to save just in case
-            <td>
-                @Html.DisplayFor(modelItem => item.recipeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.postedByuser)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.datePosted)
-            </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.recipeID }) |
             @Html.ActionLink("Details", "Details", new { id=item.recipeID }) |
