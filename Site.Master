@@ -14,8 +14,9 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="Ingredients.css" rel="stylesheet" type="text/css" />
-	<link href="loginform.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/Ingredients.css" rel="stylesheet" type="text/css" />
+	<link href="CSS/loginform.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/collapsible.css" rel="stylesheet" type="text/css" />
 
 	 <style type="text/css">
 		  .auto-style1 {

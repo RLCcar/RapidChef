@@ -204,6 +204,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="CSS\collapsible.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -218,8 +219,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="MainPage.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Ingredients.css" />
-    <Content Include="loginform.css" />
+    <Content Include="CSS\Ingredients.css" />
+    <Content Include="CSS\loginform.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
