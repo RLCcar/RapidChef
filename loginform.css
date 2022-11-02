@@ -1,0 +1,12 @@
+﻿body {
+}
+
+.navbar-fixed-top .navbar-collapse,
+.navbar-static-top .navbar-collapse,
+.navbar-fixed-bottom .navbar-collapse,
+.floatright, .floatleft {
+	float: right;
+	float: left;
+	padding-right: 5%;
+	padding-left: 0;
+}

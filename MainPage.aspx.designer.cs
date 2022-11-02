@@ -11,26 +11,8 @@ namespace RapidChef
 {
 
 
-    public partial class Contact
+    public partial class WebForm2
     {
-
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// Panel1 control.
@@ -42,22 +24,31 @@ namespace RapidChef
         protected global::System.Web.UI.WebControls.Panel Panel1;
 
         /// <summary>
-        /// checkboxlist1 control.
+        /// CheckBoxList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList checkboxlist1;
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList1;
 
         /// <summary>
-        /// Label2 control.
+        /// Panel4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Panel Panel4;
+
+        /// <summary>
+        /// CheckBoxList4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList4;
 
         /// <summary>
         /// Panel2 control.
@@ -78,15 +69,6 @@ namespace RapidChef
         protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList2;
 
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
         /// Panel3 control.
         /// </summary>
         /// <remarks>
@@ -105,21 +87,30 @@ namespace RapidChef
         protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList3;
 
         /// <summary>
-        /// ingredientSelected control.
+        /// Panel5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ingredientSelected;
+        protected global::System.Web.UI.WebControls.Panel Panel5;
 
         /// <summary>
-        /// Submit control.
+        /// CheckBoxList5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Submit;
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList5;
+
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

@@ -8,19 +8,73 @@
 //------------------------------------------------------------------------------
 
 namespace RapidChef
-{
+	{
 
 
-    public partial class SiteMaster
-    {
+	public partial class SiteMaster
+		{
 
-        /// <summary>
-        /// MainContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-    }
-}
+		/// <summary>
+		/// Table1 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Table Table1;
+
+		/// <summary>
+		/// loginemaillabel control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label loginemaillabel;
+
+		/// <summary>
+		/// passwordlabel control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label passwordlabel;
+
+		/// <summary>
+		/// emailfield control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox emailfield;
+
+		/// <summary>
+		/// passwordfield control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox passwordfield;
+
+		/// <summary>
+		/// loginbutton control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button loginbutton;
+
+		/// <summary>
+		/// MainContent control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+		}
+	}

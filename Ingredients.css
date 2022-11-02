@@ -1,0 +1,9 @@
+﻿body {
+    background-color: powderblue;
+}
+.checkboxlist {
+    margin-block: auto;
+    padding: 10px;
+    Columns: 2;
+
+}

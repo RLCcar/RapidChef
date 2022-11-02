@@ -15,90 +15,18 @@ namespace RapidChef.Controllers
         //private string SQLConnectStr = "";
 
         // GET: Recipe
-        MySqlCommand list_cmd = new MySqlCommand("SELECT * FROM recipe", server);
-
-        public string Index() // ActionResult Index()
+        public ActionResult Index() // string Index()
         {
-            string output = "";
-
-            try
-            {
-                server.Open();
-
-                // When do I need this?
-                //MySqlTransaction transaction = server.BeginTransaction();
-                //list_cmd.Transaction = transaction;
-
-                // Recieve the contents
-                MySqlDataReader rdr = list_cmd.ExecuteReader();
-                
-                //Convert output to a Recipe Object
-                while (rdr.Read() )
-                {
-                    output += rdr[0] + " " + rdr[1] + " " + rdr[2] + " " + rdr[3] + "\n";
-                }
-
-                rdr.Close();
-            }
-            catch (MySqlException ex)
-            {
-                output = ex.Message;
-                // Do we have a webpage for errors?
-            }
-            finally
-            {
-                server.Close();
-            }
-
-            return output;
-            //return View();
+            return View(Recipe.GetAllRecipes());
         }
 
         // GET: Recipe/Details/5
-        MySqlCommand detail_cmd = new MySqlCommand("SELECT * FROM recipe WHERE recipeID = @ID", server);
-
-        public string Details(int id) // ActionResult Details(int id)
+        public ActionResult Details(int id)
         {
-            detail_cmd.Parameters.AddWithValue("@ID", id);
-
-            string output = "";
-
-            try
-            {
-                server.Open();
-
-                // When do I need this?
-                //MySqlTransaction transaction = server.BeginTransaction();
-                //list_cmd.Transaction = transaction;
-
-                // Recieve the contents
-                MySqlDataReader rdr = detail_cmd.ExecuteReader();
-
-                //Convert output to a Recipe Object
-                while (rdr.Read())
-                {
-                    output += rdr[0] + " " + rdr[1] + " " + rdr[2] + " " + rdr[3] + "\n";
-                }
-
-                rdr.Close();
-            }
-            catch (MySqlException ex)
-            {
-                output = ex.Message;
-                // Do we have a webpage for errors?
-            }
-            finally
-            {
-                server.Close();
-            }
-
-            return output;
-            //return View();
+            return View(new Recipe(id));
         }
 
         // GET: Recipe/Create
-        MySqlCommand create_cmd; /* Work In Progress */
-
         public ActionResult Create()
         {
             return View();
@@ -106,18 +34,37 @@ namespace RapidChef.Controllers
 
         // POST: Recipe/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Recipe newRecipe)
         {
+            System.Diagnostics.Debug.WriteLine("Beginning Try");
+
+            /* TODO: Create the Recipe Object (to hold FormCollection contents??) */
+            //Recipe newRecipe = new Recipe(collection);
+
             try
             {
-                // TODO: Add insert logic here
+                TryUpdateModel<Recipe>(newRecipe);
 
-                return RedirectToAction("Index");
+                if (!ModelState.IsValid)
+                {
+                    System.Diagnostics.Debug.WriteLine("Failed; Returning View");
+                    return View(newRecipe);
+                }
+
+                System.Diagnostics.Debug.WriteLine("Validated; Adding to Database");
+
+                /* Add the Recipe to the database */
+                newRecipe.AddRecipe();
+
+                /* Grab the new recipe's ID number */
+
+                return RedirectToAction("Details"); /* Include the new recipe ID (How?) */
             }
             catch
             {
                 // Add an extra warning message
-                return View();
+                System.Diagnostics.Debug.WriteLine("ERROR: An exception occurred!");
+                return View(newRecipe);
             }
         }
 
@@ -135,7 +82,7 @@ namespace RapidChef.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             catch
             {
@@ -144,11 +91,9 @@ namespace RapidChef.Controllers
         }
 
         // GET: Recipe/Delete/5
-        MySqlCommand delete_cmd; /* Work In Progress */
-
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(new Recipe(id));
         }
 
         // POST: Recipe/Delete/5
@@ -157,14 +102,30 @@ namespace RapidChef.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                Recipe.DeleteRecipe(id);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(id);
             }
         }
+
+        //public ActionResult VerifyIngredient(string[] ingrIDs)
+        //{
+        //    //MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
+        //    //                                             "pwd=Sce7269680!!; database=senf22g7");
+        //    int cnt = 0;
+        //    foreach (string ingr in ingrIDs)
+        //    {
+        //        cnt++;
+        //    }
+
+        //    if (cnt < 3)
+        //        return Json("You need at least 3 ingredients in the recipe");
+        //    else
+        //        return Json(true);
+        //}
     }
 }
