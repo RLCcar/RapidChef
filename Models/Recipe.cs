@@ -41,15 +41,18 @@ namespace RapidChef.Models
         [DisplayName("Directions")]
         public string directions { get; set; }
 
+        [DisplayName("Tag 1")]
         public int? tag1 { get; set; }
 
+        [DisplayName("Tag 2")]
         public int? tag2 { get; set; }
 
+        [DisplayName("Tag 3")]
         public int? tag3 { get; set; }
 
         //[Remote(action: "VerifyIngredient", controller: "Recipe")]
         [DisplayName("Ingredients")]
-        public string[] ingrIDs { get; set; }
+        public string[] ingrIDs { get; set; } // Do these getter and setters work as intended?
 
         //static ConnectionStringSettings conn = ConfigurationManager.ConnectionStrings["Ingredients"]; // Used with Microsoft SQL
 
@@ -132,12 +135,12 @@ namespace RapidChef.Models
                 if (!rdr.IsDBNull(8))
                     tag3 = rdr.GetInt32(8);
 
-                for (int i = 1; i < 15; i++)
+                for (int i = 0; i < 15; i++)
                 {
-                    if (rdr.IsDBNull(i + 8))
+                    if (rdr.IsDBNull(i + 9))
                         break;
 
-                    ingrIDs[i] = rdr.GetString(i + 8);
+                    ingrIDs[i] = rdr.GetString(i + 9);
                 }
             }
 
@@ -147,30 +150,6 @@ namespace RapidChef.Models
             detail_cmd.Parameters.Clear();
             #endregion
         }
-
-        //public Recipe(FormCollection collection)
-        //{
-        //    recipeName  = collection["recipeName"];
-        //    description = collection["description"];
-        //    directions  = collection["directions"];
-
-        //    if (collection["tag1"] != null)
-        //        tag1 = Convert.ToInt32(collection["tag1"]);
-
-        //    if (collection["tag2"] != null)
-        //        tag2 = Convert.ToInt32(collection["tag2"]);
-
-        //    if (collection["tag3"] != null)
-        //        tag3 = Convert.ToInt32(collection["tag3"]);
-
-        //    ingrIDs = new string[15];
-        //    /* Set up some preset ingrIDs for ease of testing */
-        //    ingrIDs[0] = "lizard";
-        //    ingrIDs[1] = "chicken";
-        //    ingrIDs[2] = "apple";
-
-        //    datePosted = DateTime.Now.ToString("yyyy-MM-dd"); //Gets current time in right format
-        //}
 
         /* GetAllRecipes - Get all the recipes in the database */
         public static IEnumerable<Recipe> GetAllRecipes()
@@ -205,12 +184,12 @@ namespace RapidChef.Models
                     next.tag3 = rdr.GetInt32(8);
 
                 //Ingredients
-                for (int i = 1; i < 15; i++)
+                for (int i = 0; i < 15; i++)
                 {
-                    if (rdr.IsDBNull(i + 8))
+                    if (rdr.IsDBNull(i + 9))
                         break;
 
-                    next.ingrIDs[i] = rdr.GetString(i + 8);
+                    next.ingrIDs[i] = rdr.GetString(i + 9);
                 }
 
                 list.Add(next);
@@ -266,7 +245,7 @@ namespace RapidChef.Models
 
             for (int i = 0; i < 15; i++)
             {
-                if (ingrIDs[i] == null)
+                if (String.IsNullOrEmpty(ingrIDs[i]))
                     break;
 
                 cmd_top += ", Ingredient" + Convert.ToString(i + 1);
@@ -295,7 +274,7 @@ namespace RapidChef.Models
 
             for (int i = 0; i < 15; i++)
             {
-                if (ingrIDs[i] == null)
+                if (String.IsNullOrEmpty(ingrIDs[i]))
                     break;
 
                 cmd.Parameters.AddWithValue("@Ingredient" + Convert.ToString(i + 1), ingrIDs[i]);
@@ -320,20 +299,79 @@ namespace RapidChef.Models
             return uploaded;
         }
 
-        public void EditRecipe() /* Work In Progress */
+        public bool UpdateRecipe() /* Work In Progress */
         {
+            bool uploaded = false;
+
             /* NOTE:
              * not all attributes will be updated, so the custom edit script only edits those specified by the user.
              * 
              * We can try using another class like MySQLDataAdapter and MySQLCommandBuilder to build this command, if needed.
              */
-            MySqlCommand edit_cmd = new MySqlCommand("", server); /* Work In Progress */
 
-            server.Open();
+            // UPDATE `senf22g7`.`recipe` SET `description` = 'This is test recipe 2.', `directions` = 'There\'s no steps here. This is just a second test.' WHERE (`recipeID` = '13');
+            string cmd_body = "UPDATE senf22g7.recipe SET recipeName = @recipeName, description = @description, directions = @directions";
+            string cmd_footer = "WHERE (recipeID = @recipeID)";
 
-            edit_cmd.ExecuteNonQuery();
+            if (tag1 != null)
+                cmd_body += ", tag1 =  @tag1";
 
-            server.Close();
+            if (tag2 != null)
+                cmd_body += ", tag2 = @tag2";
+
+            if (tag3 != null)
+            {
+                cmd_body += ", tag3 = @tag3";
+            }
+
+            for (int i = 0; i < 15; i++)
+            {
+                if (String.IsNullOrEmpty(ingrIDs[i]))
+                    break;
+
+                cmd_body += ", Ingredient" + Convert.ToString(i + 1) + " = @Ingredient" + Convert.ToString(i + 1);
+            }
+
+            MySqlCommand cmd = new MySqlCommand(cmd_body + cmd_footer, server);
+
+            //Required
+            cmd.Parameters.AddWithValue("@recipeName", recipeName);
+            cmd.Parameters.AddWithValue("@description", description);
+            cmd.Parameters.AddWithValue("@directions", directions);
+
+            /* Add the variables */
+            if (tag1 != null)
+                cmd.Parameters.AddWithValue("@tag1", tag1);
+
+            if (tag2 != null)
+                cmd.Parameters.AddWithValue("@tag2", tag2);
+
+            if (tag3 != null)
+                cmd.Parameters.AddWithValue("@tag3", tag3);
+
+            for (int i = 0; i < 15; i++)
+            {
+                if (String.IsNullOrEmpty(ingrIDs[i]))
+                    break;
+
+                cmd.Parameters.AddWithValue("@Ingredient" + Convert.ToString(i + 1), ingrIDs[i]);
+            }
+
+            try
+            {
+                server.Open();
+
+                int lines = cmd.ExecuteNonQuery();
+
+                if (lines > 0)
+                    uploaded = true;
+            }
+            finally
+            {
+                server.Close();
+            }
+
+            return uploaded;
         }
 
         static MySqlCommand delete_cmd = new MySqlCommand("DELETE FROM senf22g7.recipe WHERE recipeID = @ID", server);
@@ -354,6 +392,5 @@ namespace RapidChef.Models
 
             delete_cmd.Parameters.Clear();
         }
-
     }
 }

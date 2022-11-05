@@ -14,7 +14,7 @@ namespace RapidChef.Controllers
                                                              "pwd=Sce7269680!!; database=senf22g7");
 
         // GET: Recipe
-        public ActionResult Index() // string Index()
+        public ActionResult Index()
         {
             return View(Recipe.GetAllRecipes());
         }
@@ -80,22 +80,50 @@ namespace RapidChef.Controllers
         // GET: Recipe/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(new Recipe(id));
         }
 
         // POST: Recipe/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Recipe recipe)
         {
+            System.Diagnostics.Debug.WriteLine("Validating Recipe...");
+
             try
             {
-                // TODO: Add update logic here
+                TryUpdateModel<Recipe>(recipe);
 
-                return RedirectToAction("Details");
+                if (!ModelState.IsValid)
+                {
+                    System.Diagnostics.Debug.WriteLine("Fail; Returning to Form...");
+
+                    return View(recipe);
+                }
+
+                System.Diagnostics.Debug.WriteLine("Success; Updating the Database...");
+
+                /* Does HTML.ErrorFor have functionality to detect when an item has been changed? */
+
+                /* Upload the Recipe to the database */
+                if (recipe.UpdateRecipe())
+                {
+                    System.Diagnostics.Debug.WriteLine("Success; Returning View...");
+
+                    return RedirectToAction("Details", recipe.recipeID);
+                }
+                else /* Uploading Failed */
+                {
+                    System.Diagnostics.Debug.WriteLine("Fail; Returning to Form...");
+
+                    return View(recipe);
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Post the exception error to the form
+                ViewBag.Exception = ex.Message;
+
+                return View(recipe);
             }
         }
 

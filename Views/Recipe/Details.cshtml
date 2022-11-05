@@ -6,7 +6,7 @@
     <dl class="dl-horizontal">
 
         <dt>
-            Posted by
+            @Html.DisplayNameFor(model => model.postedByuser)
         </dt>
 
         <dd>
@@ -14,7 +14,7 @@
         </dd>
 
         <dt>
-            Posted at
+            @Html.DisplayNameFor(model => model.datePosted)
         </dt>
 
         <dd>
@@ -50,21 +50,17 @@
     <hr />
 
     <h4>
-        Ingredients
+        @Html.DisplayNameFor(model => model.ingrIDs)
     </h4>
 
     <ul>
         @foreach (string ingr in Model.ingrIDs)
         {
-            if (ingr != null)
+            if (!ingr.IsEmpty())
             {
                 <li>
-                    @Html.Display(ingr)
+                    @ingr
                 </li>
-            }
-            else
-            {
-                break;
             }
         }
     </ul>

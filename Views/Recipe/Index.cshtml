@@ -46,13 +46,20 @@
             @Html.DisplayFor(modelItem => item.tag3)
         </td>
         <td>
+            @* Print all ingredients *@
             @foreach (string ingr in item.ingrIDs)
             {
-                if (ingr != null)
+                if (!ingr.IsEmpty())
                 {
-                    @Html.Display(ingr) 
+                    @ingr
+                    <br />
                 }
             }
+
+            @* Just print the first three ingredients *@
+            @*@Html.DisplayFor(modelItem => item.ingrIDs[0])
+            @Html.DisplayFor(modelItem => item.ingrIDs[1])
+            @Html.DisplayFor(modelItem => item.ingrIDs[2])*@
         </td>
 
         <td>
