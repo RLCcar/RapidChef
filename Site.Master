@@ -18,6 +18,7 @@
 	<link href="CSS/loginform.css" rel="stylesheet" type="text/css" />
     <link href="CSS/collapsible.css" rel="stylesheet" type="text/css" />
 
+
 	 <style type="text/css">
 		  .auto-style1 {
 			   margin-left: 1000px;
@@ -44,6 +45,7 @@
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
+  
             </Scripts>
         </asp:ScriptManager>
 
@@ -109,21 +111,5 @@
         </div>
 
     </form>
-    <script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
-    </script>
 </body>
 </html>

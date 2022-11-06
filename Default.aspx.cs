@@ -97,9 +97,18 @@ namespace RapidChef
 
 			ListItemCollection meats = CheckBoxList1.Items;
 			ListItemCollection plants = CheckBoxList2.Items;
+			ListItemCollection fruit = CheckBoxList3.Items;
+			ListItemCollection dairy = CheckBoxList4.Items;
 			// These lists do not exist yet
-			/*ListItemCollection starches = CheckBoxList3.Items;
-			ListItemCollection dairy = CheckBoxList4.Items;*/
+				/*ListItemCollection starches = CheckBoxList3.Items;
+				ListItemCollection dairy = CheckBoxList4.Items;*/
+
+			// These lists are not implemented yet
+				/*foreach(ListItem item in starches)
+					{
+					allItems.Add(item);
+					}
+				*/
 
 			ListItemCollection allItems = new ListItemCollection();
 
@@ -111,15 +120,14 @@ namespace RapidChef
 				{
 				allItems.Add(item);
 				}
-			// These lists are not implemented yet
-			/*foreach(ListItem item in starches)
+			foreach (ListItem item in fruit)
 				{
 				allItems.Add(item);
 				}
 			foreach(ListItem item in dairy)
 				{
 				allItems.Add(item);
-				}*/
+			}
 
 			queryConcat(allItems);
 
