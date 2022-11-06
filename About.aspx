@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="RapidChef.About" %>
 
+<%--Color Codes:
+    #91091E Red
+    #DA723C Orange
+    #C39E5C Brown
+    #FDF1D6 Creame
+
+--%>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>
     <h3>About RapidChef</h3>
