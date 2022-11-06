@@ -196,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AI Recipe R.aspx" />
     <Content Include="bin\RapidChef.dll" />
     <Content Include="bin\RapidChef.pdb" />
     <Content Include="Contact.aspx" />
@@ -257,6 +258,13 @@
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI Recipe R.aspx.cs">
+      <DependentUpon>AI Recipe R.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AI Recipe R.aspx.designer.cs">
+      <DependentUpon>AI Recipe R.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -318,6 +326,8 @@
     <Compile Include="MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\AI Models\ApiHelper.cs" />
+    <Compile Include="Views\AI Models\ApiProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
