@@ -36,7 +36,10 @@
         <center><asp:Label ID="Label4" runat="server" Text=" "></asp:Label></center>
         <br />
         <br />
-        <center><asp:Button ID="Button1" runat="server" Text="Save this Recipe" Visible ="False" /></center>
+        <center><asp:Button ID="Button1" runat="server" Text="Save this Recipe" Visible ="False" OnClick="Button1_Click" /></center>
+        <br />
+        <br />
+        <asp:Label ID="Label1" runat="server" Text="Receipt Uploaded" Visible ="False"></asp:Label>
     </form>
 </body>
 </html>
