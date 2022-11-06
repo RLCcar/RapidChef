@@ -149,6 +149,11 @@ namespace RapidChef.Controllers
             }
         }
 
+        protected void btnLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AI Recipe R");
+        }
+
         //public ActionResult VerifyIngredient(string[] ingrIDs)
         //{
         //    //MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +

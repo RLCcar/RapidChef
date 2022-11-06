@@ -25,6 +25,11 @@ namespace RapidChef
         protected async void GenerateAI_Click(object sender, EventArgs e)
 
         {
+
+            title = "";
+            Returningredients = "";
+            directions = "";
+
             string recipe = await ApiProcessor.LoadComic(ingredients);
             string[] SplitRec = recipe.Split();
             SplitRec[SplitRec.Length - 1] = (SplitRec[SplitRec.Length - 1].Split('"'))[0];
@@ -48,6 +53,11 @@ namespace RapidChef
 
                 i = i + 1;
             }
+            
+                Label5.Text = " ";
+                Label3.Text = " ";
+                Label4.Text = " ";
+            
 
             Label5.Text = "Title: " + title;
             Label3.Text = "Ingredients: " + Returningredients;
