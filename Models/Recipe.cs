@@ -52,7 +52,7 @@ namespace RapidChef.Models
 
         //[Remote(action: "VerifyIngredient", controller: "Recipe")]
         [DisplayName("Ingredients")]
-        public string[] ingrIDs { get; set; } // Do these getter and setters work as intended?
+        public List<string> ingrIDs { get; set; } // Do these getter and setters work as intended?
 
         //static ConnectionStringSettings conn = ConfigurationManager.ConnectionStrings["Ingredients"]; // Used with Microsoft SQL
 
@@ -64,13 +64,14 @@ namespace RapidChef.Models
 
         public Recipe()
         {
-            ingrIDs = new string[15];
+            ingrIDs = new List<string> { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", };
         }
 
         /* Constructor - Grabs Recipe from database using recipeID */
         public Recipe(int id)
         {
-            ingrIDs = new string[15];
+            ingrIDs = new List<string>();
+            ingrIDs.Capacity = 15;
 
             #region Using Microsoft SQL (Unused)
             //SqlDataSource server = new SqlDataSource(conn.ConnectionString, "SELECT * FROM recipe WHERE recipeID=@ID");
@@ -138,9 +139,9 @@ namespace RapidChef.Models
                 for (int i = 0; i < 15; i++)
                 {
                     if (rdr.IsDBNull(i + 9))
-                        break;
-
-                    ingrIDs[i] = rdr.GetString(i + 9);
+                        ingrIDs.Add("");
+                    else
+                        ingrIDs.Add(rdr.GetString(i + 9));
                 }
             }
 
@@ -187,9 +188,9 @@ namespace RapidChef.Models
                 for (int i = 0; i < 15; i++)
                 {
                     if (rdr.IsDBNull(i + 9))
-                        break;
-
-                    next.ingrIDs[i] = rdr.GetString(i + 9);
+                        next.ingrIDs.Add("");
+                    else
+                        next.ingrIDs.Add(rdr.GetString(i + 9));
                 }
 
                 list.Add(next);
@@ -239,9 +240,9 @@ namespace RapidChef.Models
             }
 
             /* DEBUG: Set up some preset ingrIDs and test later */
-            ingrIDs[0] = "lizard";
-            ingrIDs[1] = "chicken";
-            ingrIDs[2] = "apple";
+            //ingrIDs[0] = "lizard";
+            //ingrIDs[1] = "chicken";
+            //ingrIDs[2] = "apple";
 
             for (int i = 0; i < 15; i++)
             {
@@ -311,7 +312,7 @@ namespace RapidChef.Models
 
             // UPDATE `senf22g7`.`recipe` SET `description` = 'This is test recipe 2.', `directions` = 'There\'s no steps here. This is just a second test.' WHERE (`recipeID` = '13');
             string cmd_body = "UPDATE senf22g7.recipe SET recipeName = @recipeName, description = @description, directions = @directions";
-            string cmd_footer = "WHERE (recipeID = @recipeID)";
+            string cmd_footer = " WHERE (recipeID = @recipeID)";
 
             if (tag1 != null)
                 cmd_body += ", tag1 =  @tag1";
@@ -335,6 +336,7 @@ namespace RapidChef.Models
             MySqlCommand cmd = new MySqlCommand(cmd_body + cmd_footer, server);
 
             //Required
+            cmd.Parameters.AddWithValue("@recipeID", recipeID);
             cmd.Parameters.AddWithValue("@recipeName", recipeName);
             cmd.Parameters.AddWithValue("@description", description);
             cmd.Parameters.AddWithValue("@directions", directions);
