@@ -56,28 +56,31 @@
         </div>
     </div>
 
-    @*<div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(model => model.ingrIDs, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*<div class="col-md-10">
+            @Html.EditorFor(model => model.ingrIDs, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ingrIDs, "", new { @class = "text-danger" })
+        </div>*@
+
         <div class="col-md-10">
-            <div>
-                @Html.EditorFor(model => model.ingrIDs[0], new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ingrIDs[0], "", new { @class = "text-danger" })
-            </div>
-
-            <div>
-                @Html.EditorFor(model => model.ingrIDs[1], new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ingrIDs[1], "", new { @class = "text-danger" })
-            </div>
-
-            <div>
-                @Html.EditorFor(model => model.ingrIDs[2], new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ingrIDs[2], "", new { @class = "text-danger" })
-            </div>
+            @Html.EditorFor(model => model.ingrIDs[0], new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ingrIDs[0], "", new { @class = "text-danger" })
         </div>
-    </div>*@
+
+        @for (var i = 1; i < 15; i++)
+        {
+            <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ingrIDs[i], new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ingrIDs[i], "", new { @class = "text-danger" })
+            </div>
+        }
+    </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
+            @* Should there be a script to compile the list of ingredients into a new array to set on the Recipe model? *@
             <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>

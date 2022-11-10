@@ -52,7 +52,7 @@ namespace RapidChef.Models
 
         //[Remote(action: "VerifyIngredient", controller: "Recipe")]
         [DisplayName("Ingredients")]
-        public string[] ingrIDs { get; set; } // Do these getter and setters work as intended?
+        public List<string> ingrIDs { get; set; }
 
         //static ConnectionStringSettings conn = ConfigurationManager.ConnectionStrings["Ingredients"]; // Used with Microsoft SQL
 
@@ -64,13 +64,15 @@ namespace RapidChef.Models
 
         public Recipe()
         {
-            ingrIDs = new string[15];
+            ingrIDs = new List<string> { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", };
+            ingrIDs.Capacity = 15;
         }
 
         /* Constructor - Grabs Recipe from database using recipeID */
         public Recipe(int id)
         {
-            ingrIDs = new string[15];
+            ingrIDs = new List<string>();
+            ingrIDs.Capacity = 15;
 
             #region Using Microsoft SQL (Unused)
             //SqlDataSource server = new SqlDataSource(conn.ConnectionString, "SELECT * FROM recipe WHERE recipeID=@ID");
@@ -115,39 +117,44 @@ namespace RapidChef.Models
             server.Open();
 
             MySqlDataReader rdr = detail_cmd.ExecuteReader();
-            if (rdr.Read())
+
+            try
             {
-                recipeID = id;
-                recipeName = rdr.GetString(1);
-
-                if (!rdr.IsDBNull(2))
-                    postedByuser = rdr.GetInt32(2);
-                if (!rdr.IsDBNull(3))
-                    datePosted   = rdr.GetString(3);
-
-                description = rdr.GetString(4);
-                directions  = rdr.GetString(5);
-
-                if (!rdr.IsDBNull(6))
-                    tag1 = rdr.GetInt32(6);
-                if (!rdr.IsDBNull(7))
-                    tag2 = rdr.GetInt32(7);
-                if (!rdr.IsDBNull(8))
-                    tag3 = rdr.GetInt32(8);
-
-                for (int i = 0; i < 15; i++)
+                if (rdr.Read())
                 {
-                    if (rdr.IsDBNull(i + 9))
-                        break;
+                    recipeID = id;
+                    recipeName = rdr.GetString(1);
 
-                    ingrIDs[i] = rdr.GetString(i + 9);
+                    if (!rdr.IsDBNull(2))
+                        postedByuser = rdr.GetInt32(2);
+                    if (!rdr.IsDBNull(3))
+                        datePosted = rdr.GetString(3);
+
+                    description = rdr.GetString(4);
+                    directions = rdr.GetString(5);
+
+                    if (!rdr.IsDBNull(6))
+                        tag1 = rdr.GetInt32(6);
+                    if (!rdr.IsDBNull(7))
+                        tag2 = rdr.GetInt32(7);
+                    if (!rdr.IsDBNull(8))
+                        tag3 = rdr.GetInt32(8);
+
+                    for (int i = 0; i < 15; i++)
+                    {
+                        if (rdr.IsDBNull(i + 9))
+                            ingrIDs.Add("");
+                        else
+                            ingrIDs.Add(rdr.GetString(i + 9));
+                    }
                 }
             }
-
-            rdr.Close();
-            server.Close();
-
-            detail_cmd.Parameters.Clear();
+            finally
+            {
+                rdr.Close();
+                server.Close();
+                detail_cmd.Parameters.Clear();
+            }
             #endregion
         }
 
@@ -160,44 +167,48 @@ namespace RapidChef.Models
 
             MySqlDataReader rdr = list_cmd.ExecuteReader();
 
-            while (rdr.Read())
+            try
             {
-                Recipe next = new Recipe();
-
-                next.recipeID   = rdr.GetInt32(0);
-                next.recipeName = rdr.GetString(1);
-
-                if (!rdr.IsDBNull(2))
-                    next.postedByuser = rdr.GetInt32(2);
-                if (!rdr.IsDBNull(3))
-                    next.datePosted   = rdr.GetString(3);
-
-                next.description = rdr.GetString(4);
-                next.directions  = rdr.GetString(5);
-
-                //Tags
-                if (!rdr.IsDBNull(6))
-                    next.tag1 = rdr.GetInt32(6);
-                if (!rdr.IsDBNull(7))
-                    next.tag2 = rdr.GetInt32(7);
-                if (!rdr.IsDBNull(8))
-                    next.tag3 = rdr.GetInt32(8);
-
-                //Ingredients
-                for (int i = 0; i < 15; i++)
+                while (rdr.Read())
                 {
-                    if (rdr.IsDBNull(i + 9))
-                        break;
+                    Recipe next = new Recipe();
 
-                    next.ingrIDs[i] = rdr.GetString(i + 9);
+                    next.recipeID = rdr.GetInt32(0);
+                    next.recipeName = rdr.GetString(1);
+
+                    if (!rdr.IsDBNull(2))
+                        next.postedByuser = rdr.GetInt32(2);
+                    if (!rdr.IsDBNull(3))
+                        next.datePosted = rdr.GetString(3);
+
+                    next.description = rdr.GetString(4);
+                    next.directions = rdr.GetString(5);
+
+                    //Tags
+                    if (!rdr.IsDBNull(6))
+                        next.tag1 = rdr.GetInt32(6);
+                    if (!rdr.IsDBNull(7))
+                        next.tag2 = rdr.GetInt32(7);
+                    if (!rdr.IsDBNull(8))
+                        next.tag3 = rdr.GetInt32(8);
+
+                    //Ingredients
+                    for (int i = 0; i < 15; i++)
+                    {
+                        if (rdr.IsDBNull(i + 9))
+                            next.ingrIDs.Add("");
+                        else
+                            next.ingrIDs.Add(rdr.GetString(i + 9));
+                    }
+
+                    list.Add(next);
                 }
-
-                list.Add(next);
             }
-
-            // Close the Reader and Server
-            rdr.Close();
-            server.Close();
+            finally
+            {
+                rdr.Close();
+                server.Close();
+            }
 
             return (list);
         }
@@ -238,14 +249,9 @@ namespace RapidChef.Models
                 cmd_bottom += ", @tag3";
             }
 
-            /* DEBUG: Set up some preset ingrIDs and test later */
-            ingrIDs[0] = "lizard";
-            ingrIDs[1] = "chicken";
-            ingrIDs[2] = "apple";
-
             for (int i = 0; i < 15; i++)
             {
-                if (String.IsNullOrEmpty(ingrIDs[i]))
+                if (string.IsNullOrEmpty(ingrIDs[i]))
                     break;
 
                 cmd_top += ", Ingredient" + Convert.ToString(i + 1);
@@ -263,6 +269,7 @@ namespace RapidChef.Models
             cmd.Parameters.AddWithValue("@description", description);
             cmd.Parameters.AddWithValue("@directions", directions);
 
+            //Optional
             if (tag1 != null)
                 cmd.Parameters.AddWithValue("@tag1", tag1);
 
@@ -272,9 +279,10 @@ namespace RapidChef.Models
             if (tag3 != null)
                 cmd.Parameters.AddWithValue("@tag3", tag3);
 
+            //3 Required; 12 Optional
             for (int i = 0; i < 15; i++)
             {
-                if (String.IsNullOrEmpty(ingrIDs[i]))
+                if (string.IsNullOrEmpty(ingrIDs[i]))
                     break;
 
                 cmd.Parameters.AddWithValue("@Ingredient" + Convert.ToString(i + 1), ingrIDs[i]);
@@ -299,7 +307,7 @@ namespace RapidChef.Models
             return uploaded;
         }
 
-        public bool UpdateRecipe() /* Work In Progress */
+        public bool UpdateRecipe()
         {
             bool uploaded = false;
 
@@ -309,9 +317,8 @@ namespace RapidChef.Models
              * We can try using another class like MySQLDataAdapter and MySQLCommandBuilder to build this command, if needed.
              */
 
-            // UPDATE `senf22g7`.`recipe` SET `description` = 'This is test recipe 2.', `directions` = 'There\'s no steps here. This is just a second test.' WHERE (`recipeID` = '13');
             string cmd_body = "UPDATE senf22g7.recipe SET recipeName = @recipeName, description = @description, directions = @directions";
-            string cmd_footer = "WHERE (recipeID = @recipeID)";
+            string cmd_footer = " WHERE (recipeID = @recipeID)";
 
             if (tag1 != null)
                 cmd_body += ", tag1 =  @tag1";
@@ -326,7 +333,7 @@ namespace RapidChef.Models
 
             for (int i = 0; i < 15; i++)
             {
-                if (String.IsNullOrEmpty(ingrIDs[i]))
+                if (string.IsNullOrEmpty(ingrIDs[i]))
                     break;
 
                 cmd_body += ", Ingredient" + Convert.ToString(i + 1) + " = @Ingredient" + Convert.ToString(i + 1);
@@ -335,11 +342,12 @@ namespace RapidChef.Models
             MySqlCommand cmd = new MySqlCommand(cmd_body + cmd_footer, server);
 
             //Required
+            cmd.Parameters.AddWithValue("@recipeID", recipeID);
             cmd.Parameters.AddWithValue("@recipeName", recipeName);
             cmd.Parameters.AddWithValue("@description", description);
             cmd.Parameters.AddWithValue("@directions", directions);
 
-            /* Add the variables */
+            //Optional
             if (tag1 != null)
                 cmd.Parameters.AddWithValue("@tag1", tag1);
 
@@ -349,9 +357,10 @@ namespace RapidChef.Models
             if (tag3 != null)
                 cmd.Parameters.AddWithValue("@tag3", tag3);
 
+            //3 Required; 12 Optional
             for (int i = 0; i < 15; i++)
             {
-                if (String.IsNullOrEmpty(ingrIDs[i]))
+                if (string.IsNullOrEmpty(ingrIDs[i]))
                     break;
 
                 cmd.Parameters.AddWithValue("@Ingredient" + Convert.ToString(i + 1), ingrIDs[i]);
