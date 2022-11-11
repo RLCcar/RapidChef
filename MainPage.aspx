@@ -38,4 +38,21 @@
         <asp:Button ID="Button1" runat="server" Text="Submit" />
     </p>
 
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Ingredients %>" ProviderName="<%$ ConnectionStrings:Ingredients.ProviderName %>" SelectCommand="SELECT DISTINCT * FROM [recipe] WHERE (([recipeName] = ?) AND ([directions] = ?) AND ([description] = ?))">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="Label1" Name="recipeName" PropertyName="Text" Type="String" />
+            <asp:ControlParameter ControlID="Label2" Name="directions" PropertyName="Text" Type="String" />
+            <asp:ControlParameter ControlID="Label3" Name="description" PropertyName="Text" Type="String" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+    <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1">
+    </asp:DataList>
+    <br />
+    <br />
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <br />
+    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+    <br />
+    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+
 </asp:Content>

@@ -1,9 +1,8 @@
 ﻿body {
     background-color: #FDF1D6;
-}
-.checkboxlist {
-    margin-block: auto;
-    padding: 10px;
-    Columns: 2;
 
+}
+
+.paddingright tr td:nth-child(n+1) {
+    padding-right: 20px;
 }
