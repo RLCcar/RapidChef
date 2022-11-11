@@ -122,7 +122,7 @@ namespace RapidChef.Models
             {
                 if (rdr.Read())
                 {
-                    recipeID = id;
+                    recipeID = id; //rdr.GetInt32(0);
                     recipeName = rdr.GetString(1);
 
                     if (!rdr.IsDBNull(2))
@@ -171,35 +171,7 @@ namespace RapidChef.Models
             {
                 while (rdr.Read())
                 {
-                    Recipe next = new Recipe();
-
-                    next.recipeID = rdr.GetInt32(0);
-                    next.recipeName = rdr.GetString(1);
-
-                    if (!rdr.IsDBNull(2))
-                        next.postedByuser = rdr.GetInt32(2);
-                    if (!rdr.IsDBNull(3))
-                        next.datePosted = rdr.GetString(3);
-
-                    next.description = rdr.GetString(4);
-                    next.directions = rdr.GetString(5);
-
-                    //Tags
-                    if (!rdr.IsDBNull(6))
-                        next.tag1 = rdr.GetInt32(6);
-                    if (!rdr.IsDBNull(7))
-                        next.tag2 = rdr.GetInt32(7);
-                    if (!rdr.IsDBNull(8))
-                        next.tag3 = rdr.GetInt32(8);
-
-                    //Ingredients
-                    for (int i = 0; i < 15; i++)
-                    {
-                        if (rdr.IsDBNull(i + 9))
-                            next.ingrIDs.Add("");
-                        else
-                            next.ingrIDs.Add(rdr.GetString(i + 9));
-                    }
+                    Recipe next = ReadRecipe(rdr);
 
                     list.Add(next);
                 }
@@ -211,6 +183,70 @@ namespace RapidChef.Models
             }
 
             return (list);
+        }
+
+        public static IEnumerable<Recipe> GetRecipes(string str_cmd)
+        {
+            List<Recipe> list = new List<Recipe>();
+
+            server.Open();
+
+            MySqlCommand cmd = new MySqlCommand(str_cmd, server);
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            try
+            {
+                while (rdr.Read())
+                {
+                    Recipe next = ReadRecipe(rdr);
+
+                    list.Add(next);
+                }
+            }
+            finally
+            {
+                rdr.Close();
+                server.Close();
+            }
+
+            return (list);
+        }
+
+        /* ReadRecipe() - Reads a recipe from an executed MySqlDataReader (must have executed Read() first) */
+        private static Recipe ReadRecipe(MySqlDataReader rdr)
+        {
+            Recipe r = new Recipe();
+
+            r.recipeID = rdr.GetInt32(0);
+            r.recipeName = rdr.GetString(1);
+
+            if (!rdr.IsDBNull(2))
+                r.postedByuser = rdr.GetInt32(2);
+            if (!rdr.IsDBNull(3))
+                r.datePosted = rdr.GetString(3);
+
+            r.description = rdr.GetString(4);
+            r.directions = rdr.GetString(5);
+
+            //Tags
+            if (!rdr.IsDBNull(6))
+                r.tag1 = rdr.GetInt32(6);
+            if (!rdr.IsDBNull(7))
+                r.tag2 = rdr.GetInt32(7);
+            if (!rdr.IsDBNull(8))
+                r.tag3 = rdr.GetInt32(8);
+
+            //Ingredients
+            for (int i = 0; i < 15; i++)
+            {
+                if (rdr.IsDBNull(i + 9))
+                    r.ingrIDs.Add("");
+                else
+                    r.ingrIDs.Add(rdr.GetString(i + 9));
+            }
+
+            return r;
         }
 
         public bool UploadRecipe()

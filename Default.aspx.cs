@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Mvc;
 
 namespace RapidChef
 {
@@ -70,7 +71,7 @@ namespace RapidChef
 						}
 					}
 				// Just for on browser debugging to test edge cases of the search button
-				string SelectCommand = "SELECT recipeID FROM senf22g7" + words + "');";
+				string SelectCommand = "SELECT recipeID FROM senf22g7.recipe" + words + "');";
 				Label1.Text = SelectCommand;
 				return SelectCommand;
 				}
@@ -129,8 +130,9 @@ namespace RapidChef
 				allItems.Add(item);
 			}
 
-			queryConcat(allItems);
+			string cmd = queryConcat(allItems);
 
-			}
-		}
+            Response.RedirectToRoute(new { controller = "Recipe", action = "Index", str_cmd = cmd });
+        }
+	}
 }

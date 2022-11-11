@@ -11,12 +11,20 @@ namespace RapidChef.Controllers
     public class RecipeController : Controller
     {
         private static MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
-                                                             "pwd=Sce7269680!!; database=senf22g7");
+                                                                    "pwd=Sce7269680!!; database=senf22g7");
 
         // GET: Recipe
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    return View(Recipe.GetAllRecipes());
+        //}
+
+        public ActionResult Index(string str_cmd)
         {
-            return View(Recipe.GetAllRecipes());
+            if (string.IsNullOrEmpty(str_cmd))
+                return View(Recipe.GetAllRecipes());
+            else
+                return View(Recipe.GetRecipes(str_cmd));
         }
 
         // GET: Recipe/Details/5
