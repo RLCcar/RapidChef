@@ -77,11 +77,6 @@ namespace RapidChef
 				}
 			}
 
-		protected void CheckBoxList2_SelectedIndexChanged(object sender, EventArgs e)
-			{
-
-			}
-
 		protected void Label1_DataBinding(object sender, EventArgs e)
 			{
 

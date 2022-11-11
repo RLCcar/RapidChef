@@ -15,18 +15,55 @@
   </script>
 <%-- End of Accordion jquery--%>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script type="text/javascript">
-      $(document).ready(function () {
-          $("#txtSearch").on("keyup", function () {
-              debugger;
-              var g = $(this).val().toLowerCase();
-              $("#CheckBoxList2 tr td input").each(function () {
-                  var s = $(this).val().toLowerCase();
-                  $(this).parent().parent()[s.indexOf(g) !== -1 ? 'show' : 'hide']();
-              });
-          });
-      });
-  </script>
+            <script type="text/jscript">
+                function Search() {
+
+                    var t = document.getElementById("txtSearch").value;
+
+                    $('#MainContent_CheckBoxList1 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    $('#MainContent_CheckBoxList2 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    $('#MainContent_CheckBoxList3 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    $('#MainContent_CheckBoxList4 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+
+                }
+
+            </script>
      <br />
      <br />
 <p>
@@ -75,7 +112,7 @@
 
 <%--Ingredients Selected List--%>
     <div <%--style='float:right'--%>>
-
+        <asp:Label ID="selected" runat="server" Text="Label"></asp:Label>
     </div>
 
 <%--Query Search Button	--%>
