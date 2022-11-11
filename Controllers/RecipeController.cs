@@ -109,7 +109,7 @@ namespace RapidChef.Controllers
                 {
                     System.Diagnostics.Debug.WriteLine("Success; Returning View...");
 
-                    return RedirectToAction("Details", recipe.recipeID);
+                    return RedirectToAction("Details", new { id=recipe.recipeID });
                 }
                 else /* Uploading Failed */
                 {

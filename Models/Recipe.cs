@@ -64,7 +64,7 @@ namespace RapidChef.Models
 
         public Recipe()
         {
-            ingrIDs = new List<string> { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", };
+            ingrIDs = new List<string> { null, null, null, null, null, null, null, null, null, null, null, null, null, null, null };
             ingrIDs.Capacity = 15;
         }
 
@@ -226,8 +226,11 @@ namespace RapidChef.Models
             string cmd_bottom = ") VALUES (@recipeName, @datePosted, @description, @directions";
 
             //postedByuser = Session["userID"] // TODO: Get postedByuser if logged in (using session variables)
-            //cmd_top += ", postedByuser";
-            //cmd_bottom += ", \'" + Convert.ToString(postedByuser) + "\'";
+            //if (postedByuser == null)
+            //{
+            //    cmd_top += ", postedByuser";
+            //    cmd_bottom += ", \'" + Convert.ToString(postedByuser) + "\'";
+            //}
 
             datePosted = DateTime.Now.ToString("yyyy-MM-dd"); // TODO: Will change if datePosted changes to DateTime type
 
@@ -327,17 +330,10 @@ namespace RapidChef.Models
                 cmd_body += ", tag2 = @tag2";
 
             if (tag3 != null)
-            {
                 cmd_body += ", tag3 = @tag3";
-            }
 
             for (int i = 0; i < 15; i++)
-            {
-                if (string.IsNullOrEmpty(ingrIDs[i]))
-                    break;
-
                 cmd_body += ", Ingredient" + Convert.ToString(i + 1) + " = @Ingredient" + Convert.ToString(i + 1);
-            }
 
             MySqlCommand cmd = new MySqlCommand(cmd_body + cmd_footer, server);
 
@@ -361,9 +357,9 @@ namespace RapidChef.Models
             for (int i = 0; i < 15; i++)
             {
                 if (string.IsNullOrEmpty(ingrIDs[i]))
-                    break;
-
-                cmd.Parameters.AddWithValue("@Ingredient" + Convert.ToString(i + 1), ingrIDs[i]);
+                    cmd.Parameters.AddWithValue("@Ingredient" + Convert.ToString(i + 1), DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@Ingredient" + Convert.ToString(i + 1), ingrIDs[i]);
             }
 
             try
