@@ -16,10 +16,12 @@ namespace RapidChef
         static string directions = "";
         static string Returningredients = "";                                       
         static string datePosted = DateTime.Now.ToString("yyyy-MM-dd");
-        static string ingredients = "potato";
+        static string ingredients = "";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             ApiHelper.InitializeClient();
+           
         }
 
         protected async void GenerateAI_Click(object sender, EventArgs e)
@@ -185,6 +187,11 @@ namespace RapidChef
             // TODO: How do I get the new recipe's ID?
 
             return uploaded;
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            ingredients = TextBox1.Text;
         }
     }
 }

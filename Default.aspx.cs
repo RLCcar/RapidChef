@@ -11,7 +11,9 @@ namespace RapidChef
 {
     public partial class _Default : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+		static ListItemCollection allItems;
+
+		protected void Page_Load(object sender, EventArgs e)
         {
 
         }
@@ -106,7 +108,7 @@ namespace RapidChef
 					}
 				*/
 
-			ListItemCollection allItems = new ListItemCollection();
+			allItems = new ListItemCollection();
 
 			foreach(ListItem item in meats)
 				{

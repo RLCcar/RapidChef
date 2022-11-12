@@ -19,13 +19,7 @@
     <link href="CSS/collapsible.css" rel="stylesheet" type="text/css" />
 
 
-	 <style type="text/css">
-		  .auto-style1 {
-			   margin-left: 1000px;
-		  }
-	 </style>
-
-</head>
+	 </head>
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">

@@ -1,23 +1,19 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AI Recipe R.aspx.cs" Inherits="RapidChef.AI_Recipe_R" Async ="true" %>
+﻿<%@ Page Title="AI Recipe" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AI Recipe R.aspx.cs" Inherits="RapidChef.AI_Recipe_R" Async ="true" %>
 
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <!DOCTYPE html>
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
     <style>
     body {background-color: rgb(253, 241, 214);} 
     </style>
-</head>
-<body>
 
 
-    <form id="form1" runat="server">
         <br />
         <br />
         <h3><font size="+2"><color = rgb(145, 9, 30)><center>TRY AI RECEPIE FOR YOUR INGREDIENTS</center></h3>
-        <center><asp:Label ID="Label2" runat="server" Text="Ingredients"></asp:Label></center>
+        
+        <center><asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox></center>
       
         <br />
         <br />
@@ -40,6 +36,5 @@
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Text="Receipt Uploaded" Visible ="False"></asp:Label>
-    </form>
-</body>
-</html>
+  
+</asp:Content>
