@@ -70,14 +70,14 @@
                     <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
         <asp:Label ID="Label2" runat="server" Text="Password" Font-Bold="True" ForeColor="White"></asp:Label>
         <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" ViewState ="false" />
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" />
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
         <asp:Button ID="Button3" runat="server" Text="User" Visible ="false" />
 
-                    <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible ="false" />
+                    <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible ="false"/>
 			    </div>
             </div>
         </div>
