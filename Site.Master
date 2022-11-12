@@ -62,35 +62,21 @@
                         <li><a runat="server" href="~/AI Recipe R">AI-Recipe</a></li>  
                     </ul>
                 </div>
-			    <div class="auto-style1">
+			    <div class="auto-style1" style="height: 27px; width: 1047px; margin-left: 173px; margin-top: 9px">
 				    <!-- Login table and fields -->
-					<asp:Table ID="Table1" runat="server" BorderStyle="None" Height="35" Width="180" HorizontalAlign="Left" Font-Size="XX-Small" CssClass="navbar-right" ForeColor="White" BackColor="#333333">
-						<asp:TableRow runat="server">
-							        <asp:TableCell runat="server">
-										 	<asp:Label ID="loginemaillabel" runat="server" Text="Login Email"></asp:Label>
-							        </asp:TableCell>  
-									<asp:TableCell runat="server">
-											<asp:Label ID="passwordlabel" runat="server" Text="Password"></asp:Label>
-									</asp:TableCell> 
-						</asp:TableRow>
-						<asp:TableRow runat="server">
-								   	<asp:TableCell runat="server">
-											<asp:TextBox ID="emailfield" placeholder="email" runat="server"></asp:TextBox>
-								   	</asp:TableCell>  
-									<asp:TableCell runat="server">
-											<asp:TextBox ID="passwordfield" Type="Password" runat="server"></asp:TextBox>
-									</asp:TableCell> 
-									<asp:TableCell runat="server" HorizontalAlign="Justify" BorderStyle="None">
-											<asp:Button ID="loginbutton" height ="20" Width ="40" runat="server" placeholder="Log in" BackColor="#999999" BorderWidth="1" Font-Bold="True" Font-Size="X-Small" ForeColor="Black" TabIndex="3" Text="Log In" ValidateRequestMode="Enabled" />
-									</asp:TableCell>
-						</asp:TableRow>
-						<asp:TableRow runat="server">
-								   	<asp:TableCell runat="server">
-											
-								   	</asp:TableCell>  
-									<asp:TableCell runat="server"></asp:TableCell> 
-						</asp:TableRow>
-				    </asp:Table>
+			        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        <asp:Label ID="Label1" runat="server" Text="Email" Font-Bold="True" ForeColor="White"></asp:Label>
+                    </asp:ContentPlaceHolder>
+                    <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+        <asp:Label ID="Label2" runat="server" Text="Password" Font-Bold="True" ForeColor="White"></asp:Label>
+        <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <asp:Button ID="Button3" runat="server" Text="User" Visible ="false" />
+
 			    </div>
             </div>
         </div>
@@ -103,6 +89,8 @@
             </footer>
         </div>
 
+&nbsp;&nbsp;&nbsp; 
+        
     </form>
 </body>
 </html>

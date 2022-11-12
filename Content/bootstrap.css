@@ -118,8 +118,7 @@ optgroup,
 select,
 textarea {
   color: inherit;
-  font: inherit;
-  margin: 0;
+  margin: 0 0 0 53px;
 }
 button {
   overflow: visible;
@@ -4349,7 +4348,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand {
   float: left;
-  height: 50px;
+  height: 36px;
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
@@ -4670,6 +4669,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;
+    width: 341px;
+    margin-right: 0px;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
