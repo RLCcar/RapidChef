@@ -95,7 +95,7 @@ namespace RapidChef
 					}
 				}
 			}
-			SelectCommand += ";";
+			SelectCommand += " LIMIT 3;";
 
 			//Label1.Text = SelectCommand;
 			return SelectCommand;
@@ -152,7 +152,7 @@ namespace RapidChef
 			string cmd = queryConcat(allItems);
 			Session["cmd"] = cmd;
 
-            Response.RedirectToRoute(new { controller = "Recipe", action = "Index" });
+            Response.RedirectToRoute(new { controller = "Recipe", action = "Results" });
         }
 	}
 }

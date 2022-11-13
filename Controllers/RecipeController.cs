@@ -16,16 +16,23 @@ namespace RapidChef.Controllers
         // GET: Recipe
         public ActionResult Index()
         {
+            return View(Recipe.GetAllRecipes());
+        }
+
+        // GET: Recipe/Results
+        public ActionResult Results()
+        {
             if (Session["cmd"] != null)
             {
                 string str_cmd = Session["cmd"].ToString();
-                Session.Remove("cmd");
+                //Session.Remove("cmd");
 
                 if (!string.IsNullOrEmpty(str_cmd))
                     return View(Recipe.GetRecipes(str_cmd));
             }
-            
-            return View(Recipe.GetAllRecipes());
+
+            // TODO: Return an error if we get here
+            return View("Index");
         }
 
         // GET: Recipe/Details/5

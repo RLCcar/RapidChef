@@ -11,14 +11,14 @@
 
         <br />
         <br />
-        <h3><font size="+2"><color = rgb(145, 9, 30)><center>TRY AI RECEPIE FOR YOUR INGREDIENTS</center></h3>
+        <h3><font size="+2"><color = rgb(145, 9, 30)><center>TRY AI RECIPE FOR YOUR INGREDIENTS</center></h3>
         
         <center><asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox></center>
       
         <br />
         <br />
         <div><center>
-            <asp:Button ID="GenerateAI" runat="server" Text="Generate AI Recepie" OnClick="GenerateAI_Click" /></center>
+            <asp:Button ID="GenerateAI" runat="server" Text="Generate AI Recipe" OnClick="GenerateAI_Click" /></center>
         </div>
         <br />
         <br />
