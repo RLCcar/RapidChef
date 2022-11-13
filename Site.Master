@@ -18,10 +18,52 @@
 	<link href="CSS/loginform.css" rel="stylesheet" type="text/css" />
     <link href="CSS/collapsible.css" rel="stylesheet" type="text/css" />
 
+    <style>
+.item1 { grid-area: header;          
+          overflow: auto;
+          background-color: #333;
+          position: fixed;
+          top: 0;
+          width: 100%;
+}
+.item2 { grid-area: header;       
+         overflow: auto;
+         position: fixed;
+         top: 0;
+         right: 0;
+}
+.item2 a{
+
+}
+.item3 { grid-area: menu; 
+}
+.item4 { grid-area: main; 
+}
+.item5 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main main main'
+    'menu footer footer footer footer footer';
+  gap: 10px;
+/*  background-color: #2196F3;*/
+/*  padding: 10px;*/
+}
+
+.grid-container > div {
+/*  background-color: rgba(255, 255, 255, 0.8);*/
+ /* text-align: center;*/
+/*  padding: 50px 0;*/
+/*  font-size: 30px;*/
+}
+</style>
+
 
 	 </head>
 <body>
-    <form runat="server">
+     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -43,55 +85,63 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+         <div class="grid-container">
+             <div class="item1">
+
+                 <div <%--class="navbar navbar-inverse navbar-fixed-top"--%>>
+                     <div <%--class="container"--%>>
+                         <div <%--class="navbar-header"--%>>
+
+                             <span class="icon-bar"></span>
+                             <span class="icon-bar"></span>
+                             <span class="icon-bar"></span>
+                             </button>
                     <a class="navbar-brand" runat="server" href="~/">RapidChef</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Default">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                        <li><a runat="server" href="~/Recipe">Recipe</a></li>
-                        <li><a runat="server" href="~/AI Recipe R">AI-Recipe</a></li>  
-                    </ul>
-                </div>
-			    <div class="auto-style1" style="height: 27px; width: 1047px; margin-left: 173px; margin-top: 9px">
-				    <!-- Login table and fields -->
-			        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                        <asp:Label ID="Label1" runat="server" Text="Email" Font-Bold="True" ForeColor="White"></asp:Label>
-                    </asp:ContentPlaceHolder>
-                    <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
-        <asp:Label ID="Label2" runat="server" Text="Password" Font-Bold="True" ForeColor="White"></asp:Label>
-        <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" ViewState ="false" />
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" />
+                         </div>
+                         <div class="navbar-collapse collapse">
+                             <ul class="nav navbar-nav">
+                                 <li><a runat="server" href="~/Default">Home</a></li>
+                                 <li><a runat="server" href="~/About">About</a></li>
+                                 <li><a runat="server" href="~/Contact">Contact</a></li>
+                                 <li><a runat="server" href="~/Recipe">Recipe</a></li>
+                                 <li><a runat="server" href="~/AI Recipe R">AI-Recipe</a></li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="item2">
+                     <!-- Login table and fields -->
+                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                         <asp:Label ID="Label1" runat="server" Text="Email" ForeColor="White" ></asp:Label>
+                     </asp:ContentPlaceHolder>
+                     <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" ></asp:TextBox>
+                     <asp:Label ID="Label2" runat="server" Text="Password" ForeColor="White" ></asp:Label>
+                     <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" ViewState="false" />
+                     <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" />
 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <asp:Button ID="Button3" runat="server" Text="User" Visible="false" />
 
-        <asp:Button ID="Button3" runat="server" Text="User" Visible ="false" />
+                     <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible="false" />
+                 </div>
 
-                    <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible ="false"/>
-			    </div>
-            </div>
-        </div>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - RapidChef (ASP.NET Application)</p>
-            </footer>
-        </div>
-
-&nbsp;&nbsp;&nbsp; 
-        
+             <div class="item3">
+                 <div >
+                     <asp:ContentPlaceHolder ID="Menu" runat="server">
+                     </asp:ContentPlaceHolder>
+                 </div>
+             </div>
+             <div class="item4">
+                 <div>
+                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                     </asp:ContentPlaceHolder>
+                 </div>
+             </div>
+             <div class="item5">
+                 <p>&copy; <%: DateTime.Now.Year %> - RapidChef (ASP.NET Application)</p>
+             </div>
+         </div>   
     </form>
 </body>
 </html>
