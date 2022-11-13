@@ -41,29 +41,36 @@ namespace RapidChef
             Session ses = new Session();
             Thisemail = TextBox1.Text;
             Thispassword = TextBox2.Text;
-            getdata();
+            if (getdata() == false)
+            {
+                return;
+            }
+            else
+            {
+                Session["userID"] = userID;
+                Session["userName"] = userName;
+                Session["TextBox1"] = TextBox1;
+                Session["TextBox2"] = TextBox2;
+                Session["Label1"] = Label1;
+                Session["Label2"] = Label2;
+                Session["Button1"] = Button1;
+                Session["Button2"] = Button2;
+                Session["Button3"] = Button3;
+                Session["Button4"] = Button4;
+                TextBox1.Visible = false;
+                TextBox2.Visible = false;
+                Label1.Visible = false;
+                Label2.Visible = false;
+                Button1.Visible = false;
+                Button2.Visible = false;
+                Button3.Text = userName;
+                Button3.Visible = true;
+                Button4.Visible = true;
+            }
 
-            Session["userID"] = userID;
-            Session["userName"] = userName;
-            //Session["TextBox1"] = TextBox1;
-            //Session["TextBox2"] = TextBox2;
-            //Session["Label1"] = Label1;
-            //Session["Label2"] = Label2;
-            //Session["Button1"] = Button1;
-            //Session["Button2"] = Button2;
-            //Session["Button3"] = Button3;
-            //Session["Button4"] = Button4;
 
-            TextBox1.Visible = false;
-            TextBox2.Visible = false;
-            Label1.Visible = false;
-            Label2.Visible = false;
-            Button1.Visible = false;
-            Button2.Visible = false;
-            Button3.Visible = true;
-            Button4.Visible = true;
 
-            Button3.Text = userName;
+
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -81,8 +88,9 @@ namespace RapidChef
 
         }
 
-        private void getdata()
+        private Boolean getdata()
         {
+            Boolean auth = false;
             MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" + "pwd=Sce7269680!!; database=senf22g7");
             MySqlCommand cmd = new MySqlCommand("SELECT userID, firstname FROM senf22g7.user where email = @Thisemail and password = @Thispassword");
             // Add email and password variables (prevents SQL injection)
@@ -100,13 +108,14 @@ namespace RapidChef
                 if (!(dr.Read()))
                 {
                     MessageBox.Show("Invalid email/password");
+                    auth = false;
                 }
                 else
                 {
                     dr.Read();
                     userID = dr.GetInt32("userID");
                     userName = dr.GetString("firstname");
-
+                    auth = true;
 
                 }
                 ///   MessageBox.Show(userName); test
@@ -120,8 +129,12 @@ namespace RapidChef
             }
             finally
             {
-                server.Close();
+
+                {
+                    server.Close();
+                }
             }
+            return auth;
         }
 
         protected void Button4_Click(object sender, EventArgs e)
