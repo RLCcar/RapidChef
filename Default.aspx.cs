@@ -19,11 +19,7 @@ namespace RapidChef
         }
 
 		public string queryConcat(ListItemCollection list)
-			{
-
-			// Tail string of query
-			string words = "";
-
+		{
 			ListItemCollection selectedItems = new ListItemCollection();
 
 			// itemCount number of the selected items in the list
@@ -33,61 +29,86 @@ namespace RapidChef
 
 			// Count items selected within the list
 			foreach(ListItem item in list)
-				{
+			{
 				if(item.Selected == true)
-					{
+				{
 					itemCount += 1;
-					}
 				}
+			}
+
+			string SelectCommand = "SELECT * FROM senf22g7.recipe";
 
 			// Base case
-			if(itemCount == 0)
-				{
-				string SelectCommand = "SELECT recipeID FROM senf22g7" + ";";
-				Label1.Text = SelectCommand;
-				return SelectCommand;
-				}
-			else
-				{
+			if (itemCount > 0)
+			{
 				// Iterate through selected items and add it to the string
 				foreach(ListItem item in list)
-					{
+				{
 					if(item.Selected == true)
-						{
+					{
 						if(idx <= itemCount)
-							{
-							if(idx == 0)
-								{
-								words = words + " WHERE (ingredients = '" + item.Text;
-								}
-							else if(idx < itemCount)
-								{
-								words = words + "') AND (ingredients = '" + item.Text;
-								}
+						{
+							#region Shawn's Old Method (Unused)
+							//if (idx == 0)
+							//{
+							//    SelectCommand += " WHERE (ingredients = '" + item.Text + "')";
+							//}
+							//else if (idx < itemCount)
+							//{
+							//    SelectCommand += " OR (ingredients = '" + item.Text + "')";
+							//}
+							//else
+							//{
+							//    SelectCommand += item.Text;
+							//}
+							#endregion
+
+							#region Ryan's Intended Method (Unused)
+							//This code can only used if we can create the "has_ingredient()" command
+							//if (idx == 0)
+							//{
+							//    SelectCommand += " WHERE (has_ingredient('" + item.Text + "', recipeID))";
+							//}
+							//else
+							//{
+							//    SelectCommand += " OR (has_ingredient('" + item.Text + "', recipeID))";
+							//}
+							#endregion
+
+							#region Vlada's Method
+							if (idx == 0)
+                            {
+								SelectCommand += " WHERE ('" + item.Text + "' IN (Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, " +
+											 "Ingredient6, Ingredient7, Ingredient8, Ingredient9, Ingredient10, Ingredient11, " +
+											 "Ingredient12, Ingredient13, Ingredient14, Ingredient15))";
+                            }
 							else
-								{
-								words = words + item.Text;
-								}
+                            {
+								SelectCommand += " OR ('" + item.Text + "' IN (Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, " +
+											 "Ingredient6, Ingredient7, Ingredient8, Ingredient9, Ingredient10, Ingredient11, " +
+											 "Ingredient12, Ingredient13, Ingredient14, Ingredient15))";
 							}
-						idx += 1;
+							#endregion
 						}
+                        idx += 1;
 					}
-				// Just for on browser debugging to test edge cases of the search button
-				string SelectCommand = "SELECT recipeID FROM senf22g7.recipe" + words + "');";
-				Label1.Text = SelectCommand;
-				return SelectCommand;
 				}
 			}
+			SelectCommand += ";";
+
+			Label1.Text = SelectCommand;
+			return SelectCommand;
+		}
 
 		protected void Label1_DataBinding(object sender, EventArgs e)
-			{
+		{
 
-			}
+		}
 
 		public IEnumerator GetEnumerator()
-			{
+		{
 			throw new NotImplementedException();
-			}
+		}
 
 		// Collect the ingredients from CheckBoxLists into a single ListItemCollection
 		protected void Button1_Click1(object sender, EventArgs e)
