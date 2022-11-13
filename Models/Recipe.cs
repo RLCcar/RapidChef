@@ -59,8 +59,8 @@ namespace RapidChef.Models
         private static MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
                                                                     "pwd=Sce7269680!!; database=senf22g7");
 
-        static MySqlCommand list_cmd   = new MySqlCommand("SELECT * FROM senf22g7.recipe", server);
-        static MySqlCommand detail_cmd = new MySqlCommand("SELECT * FROM senf22g7.recipe WHERE recipeID = @ID", server);
+        static MySqlCommand list_cmd   = new MySqlCommand("SELECT * FROM senf22g7.recipe order by recipeName", server);
+        static MySqlCommand detail_cmd = new MySqlCommand("SELECT * FROM senf22g7.recipe WHERE recipeID = @ID order by recipeName", server);
 
         public Recipe()
         {
