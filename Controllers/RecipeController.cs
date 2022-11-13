@@ -14,17 +14,18 @@ namespace RapidChef.Controllers
                                                                     "pwd=Sce7269680!!; database=senf22g7");
 
         // GET: Recipe
-        //public ActionResult Index()
-        //{
-        //    return View(Recipe.GetAllRecipes());
-        //}
-
-        public ActionResult Index(string str_cmd)
+        public ActionResult Index()
         {
-            if (string.IsNullOrEmpty(str_cmd))
-                return View(Recipe.GetAllRecipes());
-            else
-                return View(Recipe.GetRecipes(str_cmd));
+            if (Session["cmd"] != null)
+            {
+                string str_cmd = Session["cmd"].ToString();
+                Session.Remove("cmd");
+
+                if (!string.IsNullOrEmpty(str_cmd))
+                    return View(Recipe.GetRecipes(str_cmd));
+            }
+            
+            return View(Recipe.GetAllRecipes());
         }
 
         // GET: Recipe/Details/5

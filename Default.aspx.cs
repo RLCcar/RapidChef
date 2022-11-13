@@ -18,6 +18,7 @@ namespace RapidChef
 
         }
 
+		// Can we port this code to Recipe Controller, and just pass a list of ingredients in Session?
 		public string queryConcat(ListItemCollection list)
 		{
 			ListItemCollection selectedItems = new ListItemCollection();
@@ -96,7 +97,7 @@ namespace RapidChef
 			}
 			SelectCommand += ";";
 
-			Label1.Text = SelectCommand;
+			//Label1.Text = SelectCommand;
 			return SelectCommand;
 		}
 
@@ -149,8 +150,9 @@ namespace RapidChef
 			}
 
 			string cmd = queryConcat(allItems);
+			Session["cmd"] = cmd;
 
-            Response.RedirectToRoute(new { controller = "Recipe", action = "Index", str_cmd = cmd });
+            Response.RedirectToRoute(new { controller = "Recipe", action = "Index" });
         }
 	}
 }

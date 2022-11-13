@@ -112,7 +112,7 @@
 
 <%--Ingredients Selected List--%>
     <div <%--style='float:right'--%>>
-        <asp:Label ID="selected" runat="server" Text="Label"></asp:Label>
+        <%--<asp:Label ID="selected" runat="server" Text="Label"></asp:Label>--%>
     </div>
 
 <%--Query Search Button	--%>
@@ -120,7 +120,7 @@
 	 <asp:Button ID="Button" runat="server" OnClick="Button1_Click1" Text="Search" />
 	 	 <br />
 		 <br />
-	 <asp:Label ID="Label1" runat="server" OnDataBinding="Label1_DataBinding" Text="Query Stringbuilder Results"></asp:Label>
+	 <%--<asp:Label ID="Label1" runat="server" OnDataBinding="Label1_DataBinding" Text="Query Stringbuilder Results"></asp:Label>--%>
 	 </div>
 	 <br />
 
