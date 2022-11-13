@@ -16,12 +16,19 @@ namespace RapidChef
         static string directions = "";
         static string Returningredients = "";                                       
         static string datePosted = DateTime.Now.ToString("yyyy-MM-dd");
-        static string ingredients = "";
+        static String ingredients = "";
         
         protected void Page_Load(object sender, EventArgs e)
         {
             ApiHelper.InitializeClient();
-           
+            if (Session["ingr"] != null)
+            {
+                ingredients = Session["ingr"].ToString();
+            }
+          
+            TextBox1.Text = ingredients;
+
+
         }
 
         protected async void GenerateAI_Click(object sender, EventArgs e)
@@ -31,6 +38,7 @@ namespace RapidChef
             title = "";
             Returningredients = "";
             directions = "";
+          
 
             string recipe = await ApiProcessor.LoadComic(ingredients);
             string[] SplitRec = recipe.Split();
@@ -87,11 +95,11 @@ namespace RapidChef
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = server;
             cmd.CommandText = "INSERT INTO senf22g7.recipe (recipeName, datePosted, postedByuser, description, directions, Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, Ingredient6, Ingredient7, Ingredient8, Ingredient9, Ingredient10, Ingredient11, Ingredient12, Ingredient13, Ingredient14, Ingredient15) VALUES(?recipeName, ?datePosted,?postedByuser, ?description, ?directions, ?ingredient1, ?ingredient2," +
-                " ?ingredient3, ?ingredient4, ?ingredient5, ?ingredient6, ?ingredient7, ?ingredient8, ?ingredient9, ?ingredient10, ?ingredient11, ?ingredient12, ?ingredient13, ?ingredient14, ?ingredient15)"; 
+                " ?ingredient3, ?ingredient4, ?ingredient5, ?ingredient6, ?ingredient7, ?ingredient8, ?ingredient9, ?ingredient10, ?ingredient11, ?ingredient12, ?ingredient13, ?ingredient14, ?ingredient15)";
             //cmd.Prepare();
 
-           
-          
+
+
 
             //   if (tag1 != null)
             // {
@@ -112,7 +120,8 @@ namespace RapidChef
             //}
 
             /* DEBUG: Set up some preset ingrIDs and test later */
-           string[] spliIngr = ingredients.Split();
+
+            string[] spliIngr = ingredients.Split();
            // for (int i = 0; i < spliIngr.Length; i++)
            // {
            //     if (String.IsNullOrEmpty(spliIngr[i]))

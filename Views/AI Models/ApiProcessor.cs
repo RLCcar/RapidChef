@@ -28,5 +28,10 @@ namespace RapidChef.Models
 
             return recepie;
         }
+
+        internal static Task<string> LoadComic(Func<string> toString)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

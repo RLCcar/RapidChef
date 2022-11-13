@@ -21,9 +21,30 @@ namespace RapidChef
 		// Can we port this code to Recipe Controller, and just pass a list of ingredients in Session?
 		public string queryConcat(ListItemCollection list)
 		{
-            int idx = 0;
+			ListItemCollection selectedItems = new ListItemCollection();
 
-            string SelectCommand = "SELECT * FROM senf22g7.recipe";
+			// itemCount number of the selected items in the list
+			// and idx to control the loop
+			int itemCount = 0;
+			int idx = 0;
+			String ingr = "";
+
+			// Count items selected within the list
+			foreach(ListItem item in list)
+			{
+				if(item.Selected == true)
+				{
+					itemCount += 1;
+					if (ingr.Equals("")){
+						ingr = item.Text;
+					}
+					else {
+						ingr = ingr + ", " + item.Text;
+					}
+				}
+			}
+			Session["ingr"] = ingr;
+			string SelectCommand = "SELECT * FROM senf22g7.recipe";
 
 			// Base case
 			if (list.Count > 0)
