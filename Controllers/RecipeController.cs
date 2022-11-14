@@ -170,20 +170,17 @@ namespace RapidChef.Controllers
             Response.Redirect("AI Recipe R");
         }
 
-        //public ActionResult VerifyIngredient(string[] ingrIDs)
-        //{
-        //    //MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
-        //    //                                             "pwd=Sce7269680!!; database=senf22g7");
-        //    int cnt = 0;
-        //    foreach (string ingr in ingrIDs)
-        //    {
-        //        cnt++;
-        //    }
+        [HttpGet]
+        public JsonResult VerifyIngredient(List<string> ingrIDs)
+        {
+            //MySqlConnection server = Recipe.server;
+            foreach (string ingr in ingrIDs)
+            {
+                if (!string.IsNullOrEmpty(ingr))
+                    return Json(true);
+            }
 
-        //    if (cnt < 3)
-        //        return Json("You need at least 3 ingredients in the recipe");
-        //    else
-        //        return Json(true);
-        //}
+            return Json("At least one ingredient is required."); //(false);
+        }
     }
 }

@@ -50,7 +50,7 @@ namespace RapidChef.Models
         [DisplayName("Tag 3")]
         public int? tag3 { get; set; }
 
-        //[Remote(action: "VerifyIngredient", controller: "Recipe")]
+        [Remote("VerifyIngredient", "Recipe")]
         [DisplayName("Ingredients")]
         public List<string> ingrIDs { get; set; }
 
