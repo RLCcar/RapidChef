@@ -26,8 +26,8 @@ namespace RapidChef
             {
                 TextBox1.Visible = false;
                 TextBox2.Visible = false;
-                Label1.Visible = false;
-                Label2.Visible = false;
+                //Label1.Visible = false;
+                //Label2.Visible = false;
                 Button1.Visible = false;
                 Button2.Visible = false;
                 Button3.Text = userName;
@@ -51,16 +51,16 @@ namespace RapidChef
                 Session["userName"] = userName;
                 Session["TextBox1"] = TextBox1;
                 Session["TextBox2"] = TextBox2;
-                Session["Label1"] = Label1;
-                Session["Label2"] = Label2;
+                //Session["Label1"] = Label1;
+                //Session["Label2"] = Label2;
                 Session["Button1"] = Button1;
                 Session["Button2"] = Button2;
                 Session["Button3"] = Button3;
                 Session["Button4"] = Button4;
                 TextBox1.Visible = false;
                 TextBox2.Visible = false;
-                Label1.Visible = false;
-                Label2.Visible = false;
+                //Label1.Visible = false;
+                //Label2.Visible = false;
                 Button1.Visible = false;
                 Button2.Visible = false;
                 Button3.Text = userName;
@@ -163,8 +163,8 @@ namespace RapidChef
 
             TextBox1.Visible = true;
             TextBox2.Visible = true;
-            Label1.Visible = true;
-            Label2.Visible = true;
+            //Label1.Visible = true;
+            //Label2.Visible = true;
             Button1.Visible = true;
             Button2.Visible = true;
             Button3.Visible = false;

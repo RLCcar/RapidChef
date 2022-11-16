@@ -6,3 +6,6 @@
 .paddingright tr td:nth-child(n+1) {
     padding-right: 20px;
 }
+.contentwidth{
+    width: 80%;
+}

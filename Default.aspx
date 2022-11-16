@@ -14,6 +14,7 @@
       });
   </script>
 <%-- End of Accordion jquery--%>
+<%--    SearchBox jquery--%>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <script type="text/jscript">
                 function Search() {
@@ -66,13 +67,14 @@
             </script>
      <br />
      <br />
+
 <p>
     <input  type="text" id='txtSearch' placeholder="Search for ingredients.." onInput="return Search();" />
 </p>
 
     <asp:Label ID="Label2" runat="server" Text="Check which ingredients you want to use:"></asp:Label>
 <%--Accordion do not touch--%>
-    <div <%--style='float:left'--%> id="accordion">
+    <div <%--style='float:left'--%> id="accordion" class="contentwidth">
         <h3>Meat</h3>
         <div>
             <p>
@@ -110,10 +112,6 @@
     </div>
 <%--   End of Accordion --%>
 
-<%--Ingredients Selected List--%>
-    <div <%--style='float:right'--%>>
-        <%--<asp:Label ID="selected" runat="server" Text="Label"></asp:Label>--%>
-    </div>
 
 <%--Query Search Button	--%>
     <div >
@@ -125,3 +123,15 @@
 	 <br />
 
 </asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="Menu" runat="server">
+    <%--Ingredients Selected List--%>
+    <div>
+	 	 <br />
+		 <br />
+         <br />
+		 <br />
+        <asp:Label ID="selected" runat="server" Text="Selected Ingredients:" ></asp:Label>
+
+    </div>
+
+    </asp:Content>
