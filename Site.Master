@@ -26,15 +26,17 @@
           top: 0;
           width: 100%;
 }
-.item2 { grid-area: header;       
+.item2 {       
          overflow: auto;
          position: fixed;
          top: 0;
          right: 0;
 }
-.item2 a{
-
-}
+        .item2 a {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
 .item3 { grid-area: menu; 
 }
 .item4 { grid-area: main; 
@@ -88,9 +90,9 @@
          <div class="grid-container">
              <div class="item1">
 
-                 <div <%--class="navbar navbar-inverse navbar-fixed-top"--%>>
-                     <div <%--class="container"--%>>
-                         <div <%--class="navbar-header"--%>>
+                 <div <class="navbar navbar-inverse navbar-fixed-top">
+                     <div <class="container">
+                         <div <class="navbar-header">
 
                              <span class="icon-bar"></span>
                              <span class="icon-bar"></span>
@@ -109,21 +111,24 @@
                          </div>
                      </div>
                  </div>
-             </div>
-             <div class="item2">
+             
+             <div>
                      <!-- Login table and fields -->
-                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                         <asp:Label ID="Label1" runat="server" Text="Email" ForeColor="White" ></asp:Label>
+                 <asp:TextBox runat="server" ID="TextBox1" type="text" placeholder="Email Address" ontextchanged="TextBox1_TextChanged"></asp:TextBox>
+                 <asp:TextBox runat="server" ID="TextBox2" type="password"  placeholder="Password" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+                    <%-- <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                         <asp:Label ID="Label1" runat="server" Text="Email" ForeColor= #FDF1D6 ></asp:Label>
                      </asp:ContentPlaceHolder>
                      <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" ></asp:TextBox>
-                     <asp:Label ID="Label2" runat="server" Text="Password" ForeColor="White" ></asp:Label>
-                     <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+                     <asp:Label ID="Label2" runat="server" Text="Password" ForeColor= #FDF1D6 ></asp:Label>
+                     <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>--%>
                      <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" ViewState="false" />
                      <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" />
 
                      <asp:Button ID="Button3" runat="server" Text="User" Visible="false" />
 
                      <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible="false" />
+                 </div>
                  </div>
 
              <div class="item3">

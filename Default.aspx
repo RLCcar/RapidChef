@@ -15,6 +15,65 @@
         </div>
         <div class="col-md-4">
 
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    $('#MainContent_CheckBoxList2 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    $('#MainContent_CheckBoxList3 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    $('#MainContent_CheckBoxList4 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+
+                }
+
+            </script>
+     <br />
+     <br />
+
+<p>
+    <input  type="text" id='txtSearch' placeholder="Search for ingredients.." onInput="return Search();" />
+</p>
+
+    <asp:Label ID="Label2" runat="server" Text="Check which ingredients you want to use:"></asp:Label>
+<%--Accordion do not touch--%>
+    <div <%--style='float:left'--%> id="accordion" class="contentwidth">
+        <h3>Meat</h3>
+        <div>
+            <p>
+                <asp:CheckBoxList ID="CheckBoxList1" runat="server" DataSourceID="Ingredients" DataTextField="name" DataValueField="name" RepeatColumns="5" CssClass="paddingright">
+                </asp:CheckBoxList>
+                <asp:SqlDataSource ID="Ingredients" runat="server" ConnectionString="<%$ ConnectionStrings:Ingredients %>" ProviderName="<%$ ConnectionStrings:Ingredients.ProviderName %>" SelectCommand="SELECT name, category FROM ingredients WHERE (category = 'meat')"></asp:SqlDataSource>
+            </p>
         </div>
     </div>
      <div class="row">
@@ -48,4 +107,4 @@
     </div>
 
 
-</asp:Content>
+    </asp:Content>
