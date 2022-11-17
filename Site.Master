@@ -14,9 +14,9 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="CSS/Ingredients.css" rel="stylesheet" type="text/css" />
-	<link href="CSS/loginform.css" rel="stylesheet" type="text/css" />
-    <link href="CSS/collapsible.css" rel="stylesheet" type="text/css" />
+    <link href="~/CSS/Ingredients.css" rel="stylesheet" type="text/css" />
+	<link href="~/CSS/loginform.css" rel="stylesheet" type="text/css" />
+    <link href="~/CSS/collapsible.css" rel="stylesheet" type="text/css" />
 
     <style>
 .item1 { grid-area: header;          
@@ -32,11 +32,11 @@
          top: 0;
          right: 0;
 }
-        .item2 a {
-            font-family: inherit;
-            font-size: inherit;
-            line-height: inherit;
-        }
+.item2 a {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+}
 .item3 { grid-area: menu; 
 }
 .item4 { grid-area: main; 
@@ -97,7 +97,9 @@
                              <span class="icon-bar"></span>
                              <span class="icon-bar"></span>
                              <span class="icon-bar"></span>
-                             </button>
+                             <span class="icon-bar"></span>
+                             <span class="icon-bar"></span>
+
                     <a class="navbar-brand" runat="server" href="~/">RapidChef</a>
                          </div>
                          <div class="navbar-collapse collapse">
@@ -128,25 +130,31 @@
                      <asp:Button ID="Button3" runat="server" Text="User" Visible="false" />
 
                      <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible="false" />
-                 </div>
-                 </div>
+                </div>
+            </div>
 
-             <div class="item3">
-                 <div >
-                     <asp:ContentPlaceHolder ID="Menu" runat="server">
-                     </asp:ContentPlaceHolder>
-                 </div>
-             </div>
-             <div class="item4">
-                 <div>
-                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                     </asp:ContentPlaceHolder>
-                 </div>
-             </div>
-             <div class="item5">
-                 <p>&copy; <%: DateTime.Now.Year %> - RapidChef (ASP.NET Application)</p>
-             </div>
-         </div>   
+            <div class="item3">
+                <div>
+                    <asp:ContentPlaceHolder ID="Menu" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div class="item4">
+                <div>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div class="item5">
+                <p>&copy; <%: DateTime.Now.Year %> - RapidChef (ASP.NET Application)</p>
+
+                <div class="col-md-12">
+                    <span class="pull-right" style="margin-right:20px;">
+                        <a runat="server" href="~/Privacy" style="color:#000000">Privacy</a>
+                    </span>
+                </div>
+            </div>
+        </div>   
     </form>
 </body>
 </html>
