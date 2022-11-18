@@ -14,54 +14,10 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/CSS/MasterPage.css" rel="stylesheet" type="text/css" />
     <link href="~/CSS/Ingredients.css" rel="stylesheet" type="text/css" />
 	<link href="~/CSS/loginform.css" rel="stylesheet" type="text/css" />
     <link href="~/CSS/collapsible.css" rel="stylesheet" type="text/css" />
-
-    <style>
-.item1 { grid-area: header;          
-          overflow: auto;
-          background-color: #333;
-          position: fixed;
-          top: 0;
-          width: 100%;
-}
-.item2 {       
-         overflow: auto;
-         position: fixed;
-         top: 0;
-         right: 0;
-}
-.item2 a {
-        font-family: inherit;
-        font-size: inherit;
-        line-height: inherit;
-}
-.item3 { grid-area: menu; 
-}
-.item4 { grid-area: main; 
-}
-.item5 { grid-area: footer; }
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'header header header header header header'
-    'menu main main main main main'
-    'menu footer footer footer footer footer';
-  gap: 10px;
-/*  background-color: #2196F3;*/
-/*  padding: 10px;*/
-}
-
-.grid-container > div {
-/*  background-color: rgba(255, 255, 255, 0.8);*/
- /* text-align: center;*/
-/*  padding: 50px 0;*/
-/*  font-size: 30px;*/
-}
-</style>
-
 
 	 </head>
 <body>
@@ -114,47 +70,41 @@
                      </div>
                  </div>
              
-             <div>
+                 <div>
                      <!-- Login table and fields -->
-                 <asp:TextBox runat="server" ID="TextBox1" type="text" placeholder="Email Address" ontextchanged="TextBox1_TextChanged"></asp:TextBox>
-                 <asp:TextBox runat="server" ID="TextBox2" type="password"  placeholder="Password" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
-                    <%-- <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                         <asp:Label ID="Label1" runat="server" Text="Email" ForeColor= #FDF1D6 ></asp:Label>
-                     </asp:ContentPlaceHolder>
-                     <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" ></asp:TextBox>
-                     <asp:Label ID="Label2" runat="server" Text="Password" ForeColor= #FDF1D6 ></asp:Label>
-                     <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>--%>
+                     <asp:TextBox runat="server" ID="TextBox1" type="text" placeholder="Email Address" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                     <asp:TextBox runat="server" ID="TextBox2" type="password" placeholder="Password" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
                      <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" ViewState="false" />
                      <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" />
 
                      <asp:Button ID="Button3" runat="server" Text="User" Visible="false" />
 
                      <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible="false" />
-                </div>
-            </div>
+                 </div>
+             </div>
 
-            <div class="item3">
-                <div>
-                    <asp:ContentPlaceHolder ID="Menu" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
-            </div>
-            <div class="item4">
-                <div>
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
-            </div>
-            <div class="item5">
-                <p>&copy; <%: DateTime.Now.Year %> - RapidChef (ASP.NET Application)</p>
+             <div class="item3">
+                 <div>
+                     <asp:ContentPlaceHolder ID="Menu" runat="server">
+                     </asp:ContentPlaceHolder>
+                 </div>
+             </div>
+             <div class="item4">
+                 <div>
+                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                     </asp:ContentPlaceHolder>
+                 </div>
+             </div>
+             <div class="item5">
+                 <p>&copy; <%: DateTime.Now.Year %> - RapidChef (ASP.NET Application)</p>
 
-                <div class="col-md-12">
-                    <span class="pull-right" style="margin-right:20px;">
-                        <a runat="server" href="~/Privacy" style="color:#000000">Privacy</a>
-                    </span>
-                </div>
-            </div>
-        </div>   
-    </form>
+                 <div class="col-md-12">
+                     <span class="pull-right" style="margin-right: 20px;">
+                         <a runat="server" href="~/Privacy" style="color: #000000">Privacy</a>
+                     </span>
+                 </div>
+             </div>
+         </div>
+     </form>
 </body>
 </html>

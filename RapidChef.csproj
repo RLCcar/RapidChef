@@ -409,6 +409,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="CSS\collapsible.css" />
+    <Content Include="CSS\MasterPage.css" />
     <Content Include="customtheme\jquery-ui-1.13.2.custom\AUTHORS.txt" />
     <Content Include="customtheme\jquery-ui-1.13.2.custom\external\jquery\jquery.js" />
     <Content Include="customtheme\jquery-ui-1.13.2.custom\images\ui-icons_444444_256x240.png" />

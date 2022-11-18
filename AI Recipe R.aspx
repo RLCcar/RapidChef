@@ -1,12 +1,6 @@
 ﻿<%@ Page Title="AI Recipe" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AI Recipe R.aspx.cs" Inherits="RapidChef.AI_Recipe_R" Async ="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<!DOCTYPE html>
-
-
-    <style>
-    body {background-color: rgb(253, 241, 214);} 
-    </style>
 
 
         <br />

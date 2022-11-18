@@ -96,6 +96,60 @@ namespace RapidChef
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
 
         /// <summary>
+        /// CheckBoxList5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList5;
+
+        /// <summary>
+        /// SqlDataSource4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource4;
+
+        /// <summary>
+        /// CheckBoxList6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList6;
+
+        /// <summary>
+        /// SqlDataSource5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource5;
+
+        /// <summary>
+        /// CheckBoxList7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList7;
+
+        /// <summary>
+        /// SqlDataSource6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource6;
+
+        /// <summary>
         /// Button control.
         /// </summary>
         /// <remarks>

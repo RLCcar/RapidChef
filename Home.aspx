@@ -60,6 +60,36 @@
                             $(this).hide();
                         }
                     });
+                    $('#MainContent_CheckBoxList5 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    $('#MainContent_CheckBoxList6 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                    $('#MainContent_CheckBoxList7 tbody td').each(function () {
+
+                        var str = $(this).text();
+                        if (str.toUpperCase().indexOf(t.toUpperCase()) >= 0) {
+
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
 
                 }
 
@@ -67,12 +97,13 @@
      <br />
      <br />
 <p>
-    <input  type="text" id='txtSearch' placeholder="Search for ingredients.." onInput="return Search();" />
+    <input  type="text" id='txtSearch' placeholder="Search for ingredients.." onInput="return Search();" style="width: 180px" />
 </p>
 
-    <asp:Label ID="Label2" runat="server" Text="Check which ingredients you want to use:"></asp:Label>
+    <asp:Label ID="Label2" runat="server" Text="Check which ingredients you want to use:" Font-Bold="True" Font-Italic="True" Font-Size="Larger"></asp:Label>
+    <br />
 <%--Accordion do not touch--%>
-    <div <%--style='float:left'--%> id="accordion">
+    <div <%--style='float:left'--%> id="accordion" class="contentwidth">
         <h3>Meat</h3>
         <div>
             <p>
@@ -105,6 +136,30 @@
                 <asp:CheckBoxList ID="CheckBoxList4" runat="server" DataSourceID="SqlDataSource3" DataTextField="name" DataValueField="name" RepeatColumns="5" CssClass="paddingright">
                 </asp:CheckBoxList>
                 <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Ingredients %>" ProviderName="<%$ ConnectionStrings:Ingredients.ProviderName %>" SelectCommand="SELECT name, category FROM ingredients WHERE (category = 'dairy')"></asp:SqlDataSource>
+            </p>
+        </div>
+         <h3>Grains</h3>
+        <div>
+            <p>
+                <asp:CheckBoxList ID="CheckBoxList5" runat="server" DataSourceID="SqlDataSource4" DataTextField="name" DataValueField="name" RepeatColumns="5" CssClass="paddingright">
+                </asp:CheckBoxList>
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:Ingredients %>" ProviderName="<%$ ConnectionStrings:Ingredients.ProviderName %>" SelectCommand="SELECT name, category FROM ingredients WHERE (category = 'grain')"></asp:SqlDataSource>
+            </p>
+        </div>
+         <h3>Herbs and Spices</h3>
+        <div>
+            <p>
+                <asp:CheckBoxList ID="CheckBoxList6" runat="server" DataSourceID="SqlDataSource5" DataTextField="name" DataValueField="name" RepeatColumns="5" CssClass="paddingright">
+                </asp:CheckBoxList>
+                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:Ingredients %>" ProviderName="<%$ ConnectionStrings:Ingredients.ProviderName %>" SelectCommand="SELECT name, category FROM ingredients WHERE (category = 'spice')"></asp:SqlDataSource>
+            </p>
+        </div>
+         <h3>Other</h3>
+        <div>
+            <p>
+                <asp:CheckBoxList ID="CheckBoxList7" runat="server" DataSourceID="SqlDataSource6" DataTextField="name" DataValueField="name" RepeatColumns="5" CssClass="paddingright">
+                </asp:CheckBoxList>
+                <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:Ingredients %>" ProviderName="<%$ ConnectionStrings:Ingredients.ProviderName %>" SelectCommand="SELECT name, category FROM ingredients WHERE (category = 'other')"></asp:SqlDataSource>
             </p>
         </div>
     </div>

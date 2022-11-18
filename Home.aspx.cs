@@ -122,6 +122,10 @@ namespace RapidChef
 			ListItemCollection plants = CheckBoxList2.Items;
 			ListItemCollection fruit = CheckBoxList3.Items;
 			ListItemCollection dairy = CheckBoxList4.Items;
+			ListItemCollection grain = CheckBoxList5.Items;
+			ListItemCollection spice = CheckBoxList6.Items;
+			ListItemCollection other = CheckBoxList7.Items;
+
 			// These lists are not implemented yet
 			//ListItemCollection starches = CheckBoxList3.Items;
 
@@ -144,6 +148,21 @@ namespace RapidChef
 					selectItems.Add(item);
 			}
 			foreach (ListItem item in dairy)
+			{
+				if (item.Selected == true)
+					selectItems.Add(item);
+			}
+			foreach (ListItem item in grain)
+			{
+				if (item.Selected == true)
+					selectItems.Add(item);
+			}
+			foreach (ListItem item in spice)
+			{
+				if (item.Selected == true)
+					selectItems.Add(item);
+			}
+			foreach (ListItem item in other)
 			{
 				if (item.Selected == true)
 					selectItems.Add(item);

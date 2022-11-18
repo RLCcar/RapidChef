@@ -1,0 +1,58 @@
+﻿
+.item1 {
+    grid-area: header;
+    overflow: auto;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.item2 {
+    grid-area: header;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+    .item2 a {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+.item3 {
+    grid-area: menu;
+}
+
+.item4 {
+    grid-area: main;
+}
+
+.item5 {
+    grid-area: footer;
+/*    position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;*/
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header'
+        'menu main main main main main'
+        'menu footer footer footer footer footer';
+    gap: 10px;
+    /*  background-color: #2196F3;*/
+    /*  padding: 10px;*/
+}
+
+    .grid-container > div {
+          background-color: rgba(255, 255, 255, 0.8);
+        /* text-align: center;*/
+        /*  padding: 50px 0;*/
+        /*  font-size: 30px;*/
+    }
