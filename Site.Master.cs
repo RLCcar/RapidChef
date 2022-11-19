@@ -181,7 +181,7 @@ namespace RapidChef
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Account View.aspx", true);
+            Response.Redirect("AccountView.aspx", true);
         }
     }
 }
