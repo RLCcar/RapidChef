@@ -178,5 +178,10 @@ namespace RapidChef
             Session.Remove("userID");
             Session.Remove("userName");
         }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Account View.aspx", true);
+        }
     }
 }
