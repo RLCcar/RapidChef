@@ -2,33 +2,48 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+<div class="contentwidth">
+          
+        <br />
+        <br />
+          
+        <br />
+          
+        <br />
+        <br />
+
+        <br />
+    <div class="contentcenter">
+        <asp:Label ID="Label2" runat="server" Text="Use AI to find a Recipe" Font-Size="XX-Large"></asp:Label>
+        <br />
+        <asp:Label ID="Label6" runat="server" Text="Enter your ingredients and search" Font-Size="X-Large"></asp:Label>
 
         <br />
         <br />
-        <h3><font size="+2"><color = rgb(145, 9, 30)><center>TRY AI RECIPE FOR YOUR INGREDIENTS</center></h3>
-        
-        <center><asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox></center>
-      
+        <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+
         <br />
         <br />
-        <div><center>
-            <asp:Button ID="GenerateAI" runat="server" Text="Generate AI Recipe" OnClick="GenerateAI_Click" /></center>
+        <div>
+            <asp:Button ID="GenerateAI" runat="server" Text="Generate AI Recipe" OnClick="GenerateAI_Click" />
         </div>
         <br />
         <br />
-        <center><asp:Label ID="Label5" runat="server" Text=" "></asp:Label></center>
-  
+        <asp:Label ID="Label5" runat="server" Text=" "></asp:Label>
+
         <br />
         <br />
-        <center><asp:Label ID="Label3" runat="server" Text=" "></asp:Label></center>
+        <asp:Label ID="Label3" runat="server" Text=" "></asp:Label>
         <br />
         <br />
-        <center><asp:Label ID="Label4" runat="server" Text=" "></asp:Label></center>
+        <asp:Label ID="Label4" runat="server" Text=" "></asp:Label>
         <br />
         <br />
-        <center><asp:Button ID="Button1" runat="server" Text="Save this Recipe" Visible ="False" OnClick="Button1_Click" /></center>
+        <asp:Button ID="Button1" runat="server" Text="Save this Recipe" Visible="False" OnClick="Button1_Click" />
         <br />
         <br />
+    </div>
         <asp:Label ID="Label1" runat="server" Text="Receipt Uploaded" Visible ="False"></asp:Label>
-  
+        
+ </div>
 </asp:Content>
