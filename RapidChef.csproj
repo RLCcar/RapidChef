@@ -517,6 +517,7 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\RecipeController.cs" />
+    <Compile Include="Controllers\userController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -584,6 +585,8 @@
     <Content Include="Views\Recipe\Delete.cshtml" />
     <Content Include="Views\Recipe\Edit.cshtml" />
     <Content Include="Views\Recipe\Results.cshtml" />
+    <Content Include="Views\user\Details.cshtml" />
+    <Content Include="Views\user\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

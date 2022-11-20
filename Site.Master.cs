@@ -67,15 +67,11 @@ namespace RapidChef
                 Button3.Visible = true;
                 Button4.Visible = true;
             }
-
-
-
-
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-
+            Response.RedirectToRoute(new { controller = "user", action = "Register" });
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -181,7 +177,8 @@ namespace RapidChef
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AccountView.aspx", true);
+            //Response.Redirect("AccountView.aspx", true);
+            Response.RedirectToRoute(new { controller = "user", action = "Details" });
         }
     }
 }
