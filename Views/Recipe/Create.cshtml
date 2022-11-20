@@ -87,7 +87,8 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href='@Url.Action("Index", "Recipe")' class="btn btn-default">Back to List</a>
+    @*@Html.ActionLink("Back to List", "Index")*@
 </div>
 
 @section Scripts {

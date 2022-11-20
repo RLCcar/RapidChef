@@ -88,10 +88,17 @@
     @*@if (true)*@ @* Used Exclusively for Debugging and Testing! *@
     @if ((Session["userID"] != null) && ((int?)Session["userID"] == Model.postedByuser))
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.recipeID }) <span> | </span>
-        @Html.ActionLink("Delete", "Delete", new { id = Model.recipeID }) <span> | </span>
+        <a href='@Url.Action("Edit", "Recipe", new { id = Model.recipeID})' class="btn btn-default">Edit</a>
+        <a href='@Url.Action("Delete", "Recipe", new { id = Model.recipeID})' class="btn btn-default">Delete</a>
+
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.recipeID })
+            <span> | </span>
+            @Html.ActionLink("Delete", "Delete", new { id = Model.recipeID })
+            <span> | </span>*@
     }
 
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.recipeID }) |*@
-    @Html.ActionLink("Back to List", "Index")
+
+    <a href='@Url.Action("Index", "Recipe")' class="btn btn-default">Back to List</a>
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

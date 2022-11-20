@@ -67,13 +67,20 @@
             @*@if (true)*@ @* Used Exclusively for Debugging and Testing! *@
             @if ((Session["userID"] != null) && ((int?)Session["userID"] == item.postedByuser))
             {
-                @Html.ActionLink("Edit", "Edit", new { id = item.recipeID }) <span> | </span>
-                @Html.ActionLink("Details", "Details", new { id = item.recipeID }) <span> | </span>
-                @Html.ActionLink("Delete", "Delete", new { id = item.recipeID })
+                <a href='@Url.Action("Edit", "Recipe", new { id = item.recipeID})' class="btn btn-default">Edit</a>
+                <a href='@Url.Action("Details", "Recipe", new { id = item.recipeID})' class="btn btn-default">Details</a>
+                <a href='@Url.Action("Delete", "Recipe", new { id = item.recipeID})' class="btn btn-default">Delete</a>
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.recipeID })
+                <span> | </span>
+                @Html.ActionLink("Details", "Details", new { id = item.recipeID })
+                <span> | </span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.recipeID })*@
             }
             else
             {
-                @Html.ActionLink("Details", "Details", new { id = item.recipeID })
+                <a href='@Url.Action("Details", "Recipe", new { id = item.recipeID})' class="btn btn-default">Details</a>
+                @*@Html.ActionLink("Details", "Details", new { id = item.recipeID })*@
             }
 
         </td>

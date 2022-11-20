@@ -64,7 +64,8 @@
         }
     </td>
     <td>
-        @Html.ActionLink("View Recipe", "Details", new { id = item.recipeID })
+        <a href='@Url.Action("Details", "Recipe", new { id = item.recipeID})' class="btn btn-default">View Recipe</a>
+        @*@Html.ActionLink("View Recipe", "Details", new { id = item.recipeID })*@
     </td>
 </tr>
 }
