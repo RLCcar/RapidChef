@@ -64,9 +64,18 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.recipeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.recipeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.recipeID })
+            @*@if (true)*@ @* Used Exclusively for Debugging and Testing! *@
+            @if ((Session["userID"] != null) && ((int?)Session["userID"] == item.postedByuser))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.recipeID }) <span> | </span>
+                @Html.ActionLink("Details", "Details", new { id = item.recipeID }) <span> | </span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.recipeID })
+            }
+            else
+            {
+                @Html.ActionLink("Details", "Details", new { id = item.recipeID })
+            }
+
         </td>
     </tr>
 }
@@ -76,5 +85,5 @@
     @Html.ActionLink("Create New Recipe", "Create")
 </p>
 <p>
-    @Html.ActionLink("AI Recipe", "AI_Recipe_R")
+    @Html.ActionLink("AI Recipe", "AI Recipe R")
 </p>

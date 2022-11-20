@@ -51,9 +51,13 @@ namespace RapidChef.Controllers
         [HttpPost]
         public ActionResult Create(Recipe newRecipe)
         {
-            System.Diagnostics.Debug.WriteLine("Validating Recipe...");
+            /* Get postedByuser if logged in (using session variables) */
+            if (Session["userID"] != null)
+                newRecipe.postedByuser = (int?)Session["userID"];
 
             /* Validate the uploaded Recipe Object */
+            System.Diagnostics.Debug.WriteLine("Validating Recipe...");
+
             try
             {
                 TryUpdateModel<Recipe>(newRecipe);

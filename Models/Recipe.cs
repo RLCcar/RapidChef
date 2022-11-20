@@ -261,12 +261,11 @@ namespace RapidChef.Models
             string cmd_top = "INSERT INTO senf22g7.recipe (recipeName, datePosted, description, directions";
             string cmd_bottom = ") VALUES (@recipeName, @datePosted, @description, @directions";
 
-            //postedByuser = Session["userID"] // TODO: Get postedByuser if logged in (using session variables)
-            //if (postedByuser == null)
-            //{
-            //    cmd_top += ", postedByuser";
-            //    cmd_bottom += ", \'" + Convert.ToString(postedByuser) + "\'";
-            //}
+            if (postedByuser != null)
+            {
+                cmd_top += ", postedByuser";
+                cmd_bottom += ", @postedByuser";
+            }
 
             datePosted = DateTime.Now.ToString("yyyy-MM-dd"); // TODO: Will change if datePosted changes to DateTime type
 
@@ -309,6 +308,9 @@ namespace RapidChef.Models
             cmd.Parameters.AddWithValue("@directions", directions);
 
             //Optional
+            if (postedByuser != null)
+                cmd.Parameters.AddWithValue("@postedByuser", postedByuser);
+
             if (tag1 != null)
                 cmd.Parameters.AddWithValue("@tag1", tag1);
 

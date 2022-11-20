@@ -85,6 +85,13 @@
 <hr />
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.recipeID }) |
+    @*@if (true)*@ @* Used Exclusively for Debugging and Testing! *@
+    @if ((Session["userID"] != null) && ((int?)Session["userID"] == Model.postedByuser))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.recipeID }) <span> | </span>
+        @Html.ActionLink("Delete", "Delete", new { id = Model.recipeID }) <span> | </span>
+    }
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.recipeID }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>
