@@ -14,101 +14,98 @@
 	<link href="~/CSS/loginform.css" rel="stylesheet" type="text/css" />
     <link href="~/CSS/collapsible.css" rel="stylesheet" type="text/css" />
 
-	 </head>
+</head>
 <body>
-    <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
+    <asp:ScriptManager runat="server">
+        <Scripts>
 
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
+            <asp:ScriptReference Name="MsAjaxBundle" />
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="bootstrap" />
+            <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+            <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+            <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+            <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+            <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+            <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+            <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+            <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+            <asp:ScriptReference Name="WebFormsBundle" />
 
-
-            </Scripts>
-        </asp:ScriptManager>
+        </Scripts>
+    </asp:ScriptManager>
 
 
-        <div class="grid-container">
-            <div class="item1">
+    <div class="grid-container">
+        <div class="item1">
 
-                <div <class="navbar navbar-inverse navbar-fixed-top">
-                     <div <class="container">
-                         <div <class="navbar-header">
+            <div <class="navbar navbar-inverse navbar-fixed-top">
+                    <div <class="container">
+                        <div <class="navbar-header">
 
-                             <span class="icon-bar"></span>
-                             <span class="icon-bar"></span>
-                             <span class="icon-bar"></span>
-                             <span class="icon-bar"></span>
-                             <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
 
-                    <a class="navbar-brand" runat="server" href="~/">RapidChef</a>
-                         </div>
-                         <div class="navbar-collapse collapse">
-                             <ul class="nav navbar-nav">
-                                 <li><a runat="server" href="~/Home">Home</a></li>
-                                 <li><a runat="server" href="~/About">About</a></li>
-                                 <li><a runat="server" href="~/Contact">Contact</a></li>
-                                 <li><a runat="server" href="~/Recipe">Recipe</a></li>
-                                 <li><a runat="server" href="~/AI Recipe R">AI-Recipe</a></li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-
-                <div>
-                    <!-- Login table and fields -->
-                    <asp:TextBox runat="server" ID="TextBox1" type="text" placeholder="Email Address" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
-                    <asp:TextBox runat="server" ID="TextBox2" type="password" placeholder="Password" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
-                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" ViewState="false" />
-                    <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" />
-
-                    <asp:Button ID="Button3" runat="server" Text="User" Visible="false" />
-
-                    <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible="false" />
-                </div>
-            </div>
-
-            <div class="item3">
-                <div>
-                    <asp:ContentPlaceHolder ID="Menu" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
-            </div>
-            <div class="item4">
-                <div>
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                        <div class="container body-content">
-                            @RenderBody()
-                            <hr />
-
+                <a class="navbar-brand" runat="server" href="~/">RapidChef</a>
                         </div>
-                    </asp:ContentPlaceHolder>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a runat="server" href="~/Home">Home</a></li>
+                                <li><a runat="server" href="~/About">About</a></li>
+                                <li><a runat="server" href="~/Contact">Contact</a></li>
+                                <li><a runat="server" href="~/Recipe">Recipe</a></li>
+                                <li><a runat="server" href="~/AI Recipe R">AI-Recipe</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="item5">
-                <p>&copy; @DateTime.Now.Year - RapidChef (ASP.NET Application)</p>
 
-                <div class="col-md-12">
-                    <span class="pull-right" style="margin-right: 20px;">
-                        <a runat="server" href="~/Privacy" style="color: #000000">Privacy</a>
-                    </span>
-                </div>
+            <div>
+                <!-- Login table and fields -->
+                <asp:TextBox runat="server" ID="TextBox1" type="text" placeholder="Email Address" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                <asp:TextBox runat="server" ID="TextBox2" type="password" placeholder="Password" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" ViewState="false" />
+                <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" />
+
+                <asp:Button ID="Button3" runat="server" Text="User" Visible="false" />
+
+                <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible="false" />
             </div>
         </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-    </form>
+        <div class="item3">
+            <div>
+                <asp:ContentPlaceHolder ID="Menu" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div class="item4">
+            <div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    <div class="container body-content">
+                        @RenderBody()
+                        <hr />
+
+                    </div>
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div class="item5">
+            <p>&copy; @DateTime.Now.Year - RapidChef (ASP.NET Application)</p>
+
+            <div class="col-md-12">
+                <span class="pull-right" style="margin-right: 20px;">
+                    <a runat="server" href="~/Privacy" style="color: #000000">Privacy</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
