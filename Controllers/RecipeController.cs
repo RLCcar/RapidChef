@@ -22,13 +22,13 @@ namespace RapidChef.Controllers
         // GET: Recipe/Results
         public ActionResult Results()
         {
-            if (Session["cmd"] != null)
+            if (Session["cond"] != null)
             {
-                string str_cmd = Session["cmd"].ToString();
+                string cmd_cond = Session["cond"].ToString();
                 //Session.Remove("cmd");
 
-                if (!string.IsNullOrEmpty(str_cmd))
-                    return View(Recipe.GetRecipes(str_cmd));
+                if (!string.IsNullOrEmpty(cmd_cond))
+                    return View(RecipeVM.GetRecipes(cmd_cond));
             }
 
             // TODO: Return an error if we get here

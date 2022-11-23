@@ -45,7 +45,7 @@ namespace RapidChef
 				}
 			}
 			Session["ingr"] = ingr;
-			string SelectCommand = "SELECT * FROM senf22g7.recipe";
+			string SelectCommand = "";
 
 			// Base case
 			if (list.Count > 0)
@@ -83,7 +83,7 @@ namespace RapidChef
 					#region Vlada's Method
 					if (idx == 0)
 					{
-						SelectCommand += " WHERE ('" + item.Text + "' IN (Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, " +
+						SelectCommand = " WHERE ('" + item.Text + "' IN (Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, " +
 									 "Ingredient6, Ingredient7, Ingredient8, Ingredient9, Ingredient10, Ingredient11, " +
 									 "Ingredient12, Ingredient13, Ingredient14, Ingredient15))";
 					}
@@ -173,7 +173,7 @@ namespace RapidChef
 			//	selectItems.Add(item);
 			//}
 
-			Session["cmd"] = queryConcat(selectItems);
+			Session["cond"] = queryConcat(selectItems);
 
 			Response.RedirectToRoute(new { controller = "Recipe", action = "Results" });
 		}

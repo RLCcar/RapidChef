@@ -1,9 +1,9 @@
-﻿@model IEnumerable<RapidChef.Models.RecipeVM>
+﻿@model IEnumerable<RapidChef.Models.Recipe>
 
 <table class="table">
     <tr>
         <th>@Html.DisplayNameFor(model => model.recipeName)</th>
-        <th>@Html.DisplayNameFor(model => model.creator)</th>
+        <th>@Html.DisplayNameFor(model => model.postedByuser)</th>
         <th>@Html.DisplayNameFor(model => model.datePosted)</th>
 
         <th>
@@ -27,7 +27,7 @@
         @Html.DisplayFor(modelItem => item.recipeName)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.creator)
+        @Html.DisplayFor(modelItem => item.postedByuser)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.datePosted)

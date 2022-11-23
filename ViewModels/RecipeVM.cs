@@ -60,39 +60,20 @@ namespace RapidChef.Models
         private static MySqlConnection server = new MySqlConnection("server=dcm.uhcl.edu; uid=senf22g7;" +
                                                                     "pwd=Sce7269680!!; database=senf22g7");
 
-        /* SELECT recipeID, recipeName, CONCAT(user.firstname, ' ', user.lastname) as "creator", datePosted, recipe.description, directions,
-         * T1.name AS tag1, T2.name AS tag2, T3.name AS tag3,
-         * Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5,
-         * Ingredient6, Ingredient7, Ingredient8, Ingredient9, Ingredient10,
-         * Ingredient11, Ingredient12, Ingredient13, Ingredient14, Ingredient15
-         * FROM senf22g7.recipe
-         * LEFT JOIN senf22g7.user ON recipe.postedByUser = user.userID
-         * LEFT JOIN senf22g7.tag T1 ON recipe.tag1 = T1.tagID
-         * LEFT JOIN senf22g7.tag T2 ON recipe.tag2 = T2.tagID
-         * LEFT JOIN senf22g7.tag T3 ON recipe.tag2 = T3.tagID;
-         */
+        static string query = "SELECT recipeID, recipeName, postedByuser, CONCAT(user.firstname, ' ', user.lastname) as \"creator\", datePosted, recipe.description, directions, " +
+                                "T1.name AS tag1, T2.name AS tag2, T3.name AS tag3, " +
+                                "Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, " +
+                                "Ingredient6, Ingredient7, Ingredient8, Ingredient9, Ingredient10, " +
+                                "Ingredient11, Ingredient12, Ingredient13, Ingredient14, Ingredient15 " +
+                                "FROM senf22g7.recipe " +
+                                "LEFT JOIN senf22g7.user ON recipe.postedByUser = user.userID " +
+                                "LEFT JOIN senf22g7.tag T1 ON recipe.tag1 = T1.tagID " +
+                                "LEFT JOIN senf22g7.tag T2 ON recipe.tag2 = T2.tagID " +
+                                "LEFT JOIN senf22g7.tag T3 ON recipe.tag2 = T3.tagID ";
 
-        static MySqlCommand list_cmd   = new MySqlCommand("SELECT recipeID, recipeName, postedByuser, CONCAT(user.firstname, ' ', user.lastname) as \"creator\", datePosted, recipe.description, directions, " +
-                                                          "T1.name AS tag1, T2.name AS tag2, T3.name AS tag3, " +
-                                                          "Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, " +
-                                                          "Ingredient6, Ingredient7, Ingredient8, Ingredient9, Ingredient10, " +
-                                                          "Ingredient11, Ingredient12, Ingredient13, Ingredient14, Ingredient15 " +
-                                                          "FROM senf22g7.recipe " +
-                                                          "LEFT JOIN senf22g7.user ON recipe.postedByUser = user.userID " +
-                                                          "LEFT JOIN senf22g7.tag T1 ON recipe.tag1 = T1.tagID " +
-                                                          "LEFT JOIN senf22g7.tag T2 ON recipe.tag2 = T2.tagID " +
-                                                          "LEFT JOIN senf22g7.tag T3 ON recipe.tag2 = T3.tagID order by recipeName", server);
+        static MySqlCommand list_cmd   = new MySqlCommand(query + "order by recipeName", server);
 
-        static MySqlCommand detail_cmd = new MySqlCommand("SELECT recipeID, recipeName, postedByuser, CONCAT(user.firstname, ' ', user.lastname) as \"creator\", datePosted, recipe.description, directions, " +
-                                                          "T1.name AS tag1, T2.name AS tag2, T3.name AS tag3, " +
-                                                          "Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, " +
-                                                          "Ingredient6, Ingredient7, Ingredient8, Ingredient9, Ingredient10, " +
-                                                          "Ingredient11, Ingredient12, Ingredient13, Ingredient14, Ingredient15 " +
-                                                          "FROM senf22g7.recipe " +
-                                                          "LEFT JOIN senf22g7.user ON recipe.postedByUser = user.userID " +
-                                                          "LEFT JOIN senf22g7.tag T1 ON recipe.tag1 = T1.tagID " +
-                                                          "LEFT JOIN senf22g7.tag T2 ON recipe.tag2 = T2.tagID " +
-                                                          "LEFT JOIN senf22g7.tag T3 ON recipe.tag2 = T3.tagID WHERE recipeID = @ID order by recipeName", server);
+        static MySqlCommand detail_cmd = new MySqlCommand(query + "WHERE recipeID = @ID order by recipeName", server);
 
         public RecipeVM()
         {
@@ -184,13 +165,13 @@ namespace RapidChef.Models
             return (list);
         }
 
-        public static IEnumerable<RecipeVM> GetRecipes(string str_cmd)
+        public static IEnumerable<RecipeVM> GetRecipes(string cmd_cond)
         {
             List<RecipeVM> list = new List<RecipeVM>();
 
             server.Open();
 
-            MySqlCommand cmd = new MySqlCommand(str_cmd, server);
+            MySqlCommand cmd = new MySqlCommand(query + cmd_cond, server);
 
             MySqlDataReader rdr = cmd.ExecuteReader();
 
