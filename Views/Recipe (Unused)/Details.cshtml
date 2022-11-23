@@ -1,4 +1,4 @@
-﻿@model RapidChef.Models.RecipeVM
+﻿@model RapidChef.Models.Recipe
 
 <div>
     <h1>@Html.DisplayFor(model => model.recipeName)</h1>
@@ -6,11 +6,11 @@
     <dl class="dl-horizontal">
 
         <dt>
-            @Html.DisplayNameFor(model => model.creator)
+            @Html.DisplayNameFor(model => model.postedByuser)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.creator)
+            @Html.DisplayFor(model => model.postedByuser)
         </dd>
 
         <dt>
@@ -81,6 +81,9 @@
         @Html.DisplayFor(model => model.directions)
     </p>
 </div>
+
+<hr />
+
 <p>
     @*@if (true)*@ @* Used Exclusively for Debugging and Testing! *@
     @if ((Session["userID"] != null) && ((int?)Session["userID"] == Model.postedByuser))

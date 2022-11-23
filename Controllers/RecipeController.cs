@@ -16,7 +16,7 @@ namespace RapidChef.Controllers
         // GET: Recipe
         public ActionResult Index()
         {
-            return View(Recipe.GetAllRecipes());
+            return View(RecipeVM.GetAllRecipes());
         }
 
         // GET: Recipe/Results
@@ -38,7 +38,7 @@ namespace RapidChef.Controllers
         // GET: Recipe/Details/5
         public ActionResult Details(int id)
         {
-            return View(new Recipe(id));
+            return View(new RecipeVM(id));
         }
 
         // GET: Recipe/Create

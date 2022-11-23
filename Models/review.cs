@@ -112,7 +112,7 @@ namespace RapidChef.Models
             {
                 rdr.Close();
                 server.Close();
-                detail_cmd.Parameters.Clear();
+                list_cmd.Parameters.Clear();
             }
 
             return (list);

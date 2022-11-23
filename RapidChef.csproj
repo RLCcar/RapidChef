@@ -560,6 +560,7 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\RecipeVM.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -577,16 +578,18 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-    <Content Include="Views\Recipe\Index.cshtml" />
+    <Content Include="Views\Recipe %28Unused%29\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Recipe\Details.cshtml" />
+    <Content Include="Views\Recipe %28Unused%29\Details.cshtml" />
     <Content Include="Views\Recipe\Create.cshtml" />
     <Content Include="Views\Recipe\Delete.cshtml" />
     <Content Include="Views\Recipe\Edit.cshtml" />
     <Content Include="Views\Recipe\Results.cshtml" />
     <Content Include="Views\user\Details.cshtml" />
     <Content Include="Views\user\Register.cshtml" />
+    <Content Include="Views\Recipe\Index.cshtml" />
+    <Content Include="Views\Recipe\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

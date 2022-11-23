@@ -1,0 +1,96 @@
+﻿@model IEnumerable<RapidChef.Models.Recipe>
+
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.recipeName)</th>
+        <th>@Html.DisplayNameFor(model => model.postedByuser)</th>
+        <th>@Html.DisplayNameFor(model => model.datePosted)</th>
+        <th>@Html.DisplayNameFor(model => model.description)</th>
+        <th>@Html.DisplayNameFor(model => model.directions)</th>
+
+        <th>
+            @* Tags 1-3 *@
+            Tags
+        </th>
+
+        <th>
+            @* Ingredients 1-15 *@
+            @Html.DisplayNameFor(model => model.ingrIDs)
+        </th>
+
+        <th></th> @* Used to hold "Edit", "Details", and "Delete" *@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.recipeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postedByuser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datePosted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.directions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tag1)
+            <br/>
+            @Html.DisplayFor(modelItem => item.tag2)
+            <br/>
+            @Html.DisplayFor(modelItem => item.tag3)
+        </td>
+        <td>
+            @* Print all ingredients *@
+            @foreach (string ingr in item.ingrIDs)
+            {
+                if (!ingr.IsEmpty())
+                {
+                    @ingr
+                    <br />
+                }
+            }
+
+            @* Just print the first three ingredients *@
+            @*@Html.DisplayFor(modelItem => item.ingrIDs[0])
+            @Html.DisplayFor(modelItem => item.ingrIDs[1])
+            @Html.DisplayFor(modelItem => item.ingrIDs[2])*@
+        </td>
+
+        <td>
+            @*@if (true)*@ @* Used Exclusively for Debugging and Testing! *@
+            @if ((Session["userID"] != null) && ((int?)Session["userID"] == item.postedByuser))
+            {
+                <a href='@Url.Action("Edit", "Recipe", new { id = item.recipeID})' class="btn btn-default">Edit</a>
+                <a href='@Url.Action("Details", "Recipe", new { id = item.recipeID})' class="btn btn-default">Details</a>
+                <a href='@Url.Action("Delete", "Recipe", new { id = item.recipeID})' class="btn btn-default">Delete</a>
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.recipeID })
+                <span> | </span>
+                @Html.ActionLink("Details", "Details", new { id = item.recipeID })
+                <span> | </span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.recipeID })*@
+            }
+            else
+            {
+                <a href='@Url.Action("Details", "Recipe", new { id = item.recipeID})' class="btn btn-default">Details</a>
+                @*@Html.ActionLink("Details", "Details", new { id = item.recipeID })*@
+            }
+
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Create New Recipe", "Create")
+</p>
+<p>
+    @Html.ActionLink("Generate AI Recipe", "AI Recipe R")
+</p>
