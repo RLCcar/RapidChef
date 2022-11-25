@@ -30,7 +30,7 @@ namespace RapidChef
                 //Label2.Visible = false;
                 Button1.Visible = false;
                 Button2.Visible = false;
-                Button3.Text = userName;
+                Button3.Text = Session["userName"].ToString();
                 Button3.Visible = true;
                 Button4.Visible = true;
             }
@@ -63,7 +63,7 @@ namespace RapidChef
                 //Label2.Visible = false;
                 Button1.Visible = false;
                 Button2.Visible = false;
-                Button3.Text = userName;
+                Button3.Text = Session["userName"].ToString();
                 Button3.Visible = true;
                 Button4.Visible = true;
             }

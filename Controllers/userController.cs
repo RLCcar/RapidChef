@@ -36,19 +36,49 @@ namespace RapidChef.Controllers
 
         // POST: user/Register
         [HttpPost]
-        public ActionResult Register(FormCollection collection)
+        public ActionResult Register(user newuser)
         {
+            /* Validate the uploaded Recipe Object */
+            System.Diagnostics.Debug.WriteLine("Validating User...");
+
             try
             {
-                // TODO: Add User Validation Here
+                TryUpdateModel<user>(newuser);
 
-                // TODO: Add Database Submission Here
+                if (!ModelState.IsValid)
+                {
+                    System.Diagnostics.Debug.WriteLine("Fail; Returning to Form...");
 
-                return RedirectToAction("Index");
+                    return View(newuser);
+                }
+
+                System.Diagnostics.Debug.WriteLine("Success; Uploading to Database...");
+
+                /* Upload user information to the database */
+                if (newuser.register())
+                {
+                    /* Log in the user */
+                    Session["userID"] = newuser.userID;
+                    Session["userName"] = newuser.firstname;
+
+                    System.Diagnostics.Debug.WriteLine("Success; Returning to Homepage");
+
+                    return Redirect("~/Home");
+                }
+                else /* Uploading Failed */
+                {
+                    System.Diagnostics.Debug.WriteLine("Fail; Returning to Form...");
+
+                    return View(newuser);
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Post the exception error to the form
+                ViewBag.Exception = ex.Message;
+                System.Diagnostics.Debug.WriteLine("Fail; " + ex.Message + "\nReturning to Form...");
+
+                return View(newuser);
             }
         }
 

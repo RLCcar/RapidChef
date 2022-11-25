@@ -84,5 +84,67 @@ namespace RapidChef.Models
                 detail_cmd.Parameters.Clear();
             }
         }
+
+        public bool register()
+        {
+            bool registered = false;
+
+            //string cmd_top = "INSERT INTO senf22g7.user (firstname, lastname, email, password";
+            //string cmd_bottom = ") VALUES (@firstname, @lastname, @email, @password";
+
+            //System.Diagnostics.Debug.WriteLine(cmd_top + cmd_bottom + ");"); // Test if the script is built correctly
+
+            registrationDate = DateTime.Now.ToString("MM/dd/yyyy");
+
+            /* Complete the cmd with parameters */
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO senf22g7.user (firstname, lastname, email, password, registrationDate) VALUES (@firstname, @lastname, @email, @password, @registrationDate);", server);
+
+            cmd.Parameters.AddWithValue("@firstname", firstname);
+            cmd.Parameters.AddWithValue("@lastname", lastname);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@password", password);
+            cmd.Parameters.AddWithValue("@registrationDate", registrationDate);
+
+            try
+            {
+                server.Open();
+
+                int lines = cmd.ExecuteNonQuery();
+
+                if (lines > 0)
+                    registered = true;
+            }
+            catch
+            {
+                server.Close();
+                return registered;
+            }
+
+            /* If successful, query the server for complete user info */
+            MySqlCommand query_cmd = new MySqlCommand("SELECT userID, status, user_type FROM senf22g7.user WHERE (firstname = @firstname) AND (lastname = @lastname) AND (email = @email)", server);
+
+            query_cmd.Parameters.AddWithValue("@firstname", firstname);
+            query_cmd.Parameters.AddWithValue("@lastname", lastname);
+            query_cmd.Parameters.AddWithValue("@email", email);
+
+            MySqlDataReader rdr = query_cmd.ExecuteReader();
+
+            try
+            {
+                if (rdr.Read())
+                {
+                    userID = rdr.GetInt32("userID");
+                    status = rdr.GetString("status");
+                    user_type = rdr.GetString("user_type");
+                }
+            }
+            finally
+            {
+                rdr.Close();
+                server.Close();
+            }
+
+            return registered;
+        }
     }
 }
