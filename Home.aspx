@@ -165,14 +165,11 @@
     </div>
 <%--   End of Accordion --%>
 
-<%--Ingredients Selected List--%>
-    <div <%--style='float:right'--%>>
-        <%--<asp:Label ID="selected" runat="server" Text="Label"></asp:Label>--%>
-    </div>
 
 <%--Query Search Button	--%>
     <div >
-	 <asp:Button ID="Button" runat="server" OnClick="Button1_Click1" Text="Search" />
+        <br />
+	 <asp:Button ID="Button" runat="server" OnClick="Button1_Click1" Text="Search" CssClass="btn btn-default" />
 	 	 <br />
 		 <br />
 	 <%--<asp:Label ID="Label1" runat="server" OnDataBinding="Label1_DataBinding" Text="Query Stringbuilder Results"></asp:Label>--%>

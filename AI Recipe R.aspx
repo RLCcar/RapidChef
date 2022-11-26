@@ -25,7 +25,7 @@
         <br />
         <br />
         <div>
-            <asp:Button ID="GenerateAI" runat="server" Text="Generate AI Recipe" OnClick="GenerateAI_Click" />
+            <asp:Button ID="GenerateAI" runat="server" Text="Generate AI Recipe" OnClick="GenerateAI_Click" CssClass="btn btn-default" />
         </div>
         <br />
         <br />
@@ -39,7 +39,7 @@
         <asp:Label ID="Label4" runat="server" Text=" "></asp:Label>
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" Text="Save this Recipe" Visible="False" OnClick="Button1_Click" />
+        <asp:Button ID="Button1" runat="server" Text="Save this Recipe" Visible="False" OnClick="Button1_Click" CssClass="btn btn-default" />
         <br />
         <br />
     </div>
