@@ -4399,9 +4399,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin: 7.5px -15px;
 }
 .navbar-nav > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  line-height: 20px;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     line-height: 20px;
+     color: #DA723C;
 }
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {
