@@ -591,6 +591,7 @@
     <Content Include="Views\Recipe\Index.cshtml" />
     <Content Include="Views\Recipe\Details.cshtml" />
     <Content Include="Views\Recipe\Results.cshtml" />
+    <Content Include="Views\user\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

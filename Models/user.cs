@@ -146,5 +146,34 @@ namespace RapidChef.Models
 
             return registered;
         }
+
+        public bool update()
+        {
+            bool updated = false;
+
+            MySqlCommand cmd = new MySqlCommand("UPDATE senf22g7.user SET firstname = @firstname, lastname = @lastname, email = @email, password = @password WHERE (userID = @userID)", server);
+
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@firstname", firstname);
+            cmd.Parameters.AddWithValue("@lastname", lastname);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@password", password);
+
+            try
+            {
+                server.Open();
+
+                int lines = cmd.ExecuteNonQuery();
+
+                if (lines > 0)
+                    updated = true;
+            }
+            finally
+            {
+                server.Close();
+            }
+
+            return updated;
+        }
     }
 }

@@ -83,24 +83,59 @@ namespace RapidChef.Controllers
         }
 
         // GET: user/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            return View();
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Register");
+            }
+            else
+            {
+                return View(new user((int)Session["userID"]));
+            }
         }
 
         // POST: user/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(user edited)
         {
+            System.Diagnostics.Debug.WriteLine("Validating User...");
+
             try
             {
-                // TODO: Add update logic here
+                TryUpdateModel<user>(edited);
 
-                return RedirectToAction("Index");
+                if (!ModelState.IsValid)
+                {
+                    System.Diagnostics.Debug.WriteLine("Fail; Returning to Form...");
+
+                    return View(edited);
+                }
+
+                System.Diagnostics.Debug.WriteLine("Success; Updating the Database...");
+
+                /* Does HTML.ErrorFor have functionality to detect when an item has been changed? */
+
+                /* Upload the Recipe to the database */
+                if (edited.update())
+                {
+                    System.Diagnostics.Debug.WriteLine("Success; Returning View...");
+
+                    return RedirectToAction("Details");
+                }
+                else /* Uploading Failed */
+                {
+                    System.Diagnostics.Debug.WriteLine("Fail; Returning to Form...");
+
+                    return View(edited);
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Post the exception error to the form
+                ViewBag.Exception = ex.Message;
+
+                return View(edited);
             }
         }
 
