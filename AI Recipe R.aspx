@@ -14,7 +14,7 @@
 
         <br />
     <div class="contentcenter">
-        <asp:Label ID="Label2" runat="server" Text="Use AI to find a Recipe" Font-Size="XX-Large"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="Use AI to create a Recipe" Font-Size="XX-Large"></asp:Label>
         <br />
         <asp:Label ID="Label6" runat="server" Text="Enter your ingredients and search" Font-Size="X-Large"></asp:Label>
 
