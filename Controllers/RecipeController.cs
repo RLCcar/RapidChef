@@ -16,6 +16,8 @@ namespace RapidChef.Controllers
         // GET: Recipe
         public ActionResult Index()
         {
+            ViewBag.Title = "Recipes";
+
             return View(RecipeVM.GetAllRecipes());
         }
 
@@ -38,12 +40,17 @@ namespace RapidChef.Controllers
         // GET: Recipe/Details/5
         public ActionResult Details(int id)
         {
-            return View(new RecipeVM(id));
+            RecipeVM recipe = new RecipeVM(id);
+            ViewBag.Title = recipe.recipeName;
+
+            return View(recipe);
         }
 
         // GET: Recipe/Create
         public ActionResult Create()
         {
+            ViewBag.Title = "Create Recipe";
+
             return View();
         }
 
@@ -51,6 +58,8 @@ namespace RapidChef.Controllers
         [HttpPost]
         public ActionResult Create(Recipe newRecipe)
         {
+            ViewBag.Title = "Create Recipe";
+
             /* Get postedByuser if logged in (using session variables) */
             if (Session["userID"] != null)
                 newRecipe.postedByuser = (int?)Session["userID"];
@@ -100,6 +109,8 @@ namespace RapidChef.Controllers
         // GET: Recipe/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.Title = "Edit Recipe";
+
             return View(new Recipe(id));
         }
 
@@ -107,6 +118,8 @@ namespace RapidChef.Controllers
         [HttpPost]
         public ActionResult Edit(Recipe recipe)
         {
+            ViewBag.Title = "Edit Recipe";
+
             System.Diagnostics.Debug.WriteLine("Validating Recipe...");
 
             try
@@ -150,6 +163,8 @@ namespace RapidChef.Controllers
         // GET: Recipe/Delete/5
         public ActionResult Delete(int id)
         {
+            ViewBag.Title = "Delete Recipe";
+
             return View(new Recipe(id));
         }
 
@@ -157,6 +172,8 @@ namespace RapidChef.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+            ViewBag.Title = "Delete Recipe";
+
             try
             {
                 Recipe.DeleteRecipe(id);

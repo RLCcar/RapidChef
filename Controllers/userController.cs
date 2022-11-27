@@ -18,6 +18,8 @@ namespace RapidChef.Controllers
         // GET: user/Details/5
         public ActionResult Details()
         {
+            ViewBag.Title = "Account Info";
+
             if (Session["userID"] == null)
             {
                 return RedirectToAction("Register");
@@ -31,6 +33,8 @@ namespace RapidChef.Controllers
         // GET: user/Register
         public ActionResult Register()
         {
+            ViewBag.Title = "User Registration";
+
             return View();
         }
 
@@ -38,6 +42,8 @@ namespace RapidChef.Controllers
         [HttpPost]
         public ActionResult Register(user newuser)
         {
+            ViewBag.Title = "User Registration";
+
             /* Validate the uploaded Recipe Object */
             System.Diagnostics.Debug.WriteLine("Validating User...");
 
@@ -85,6 +91,8 @@ namespace RapidChef.Controllers
         // GET: user/Edit/5
         public ActionResult Edit()
         {
+            ViewBag.Title = "Edit User Info";
+
             if (Session["userID"] == null)
             {
                 return RedirectToAction("Register");
@@ -99,6 +107,8 @@ namespace RapidChef.Controllers
         [HttpPost]
         public ActionResult Edit(user edited)
         {
+            ViewBag.Title = "Edit User Info";
+
             System.Diagnostics.Debug.WriteLine("Validating User...");
 
             try
