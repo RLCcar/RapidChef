@@ -1,10 +1,14 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CefSharp;
+using javax.swing.text;
+using MySql.Data.MySqlClient;
+using org.w3c.dom;
 using RapidChef.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace RapidChef
@@ -18,28 +22,42 @@ namespace RapidChef
         static string datePosted = DateTime.Now.ToString("yyyy-MM-dd");
         static String ingredients = "";
         
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ApiHelper.InitializeClient();
+
             if (Session["ingr"] != null)
             {
                 ingredients = Session["ingr"].ToString();
+                TextBox1.Text = ingredients;
             }
-          
-            TextBox1.Text = ingredients;
+            
+            
 
+            gifHidden();
+        }
 
+        protected void gifVisible()
+        {
+            gif1Picture.Visible = true;
+        }
+
+        protected void gifHidden()
+        {
+            gif1Picture.Visible = false;
         }
 
         protected async void GenerateAI_Click(object sender, EventArgs e)
 
         {
-
+            gifVisible();
             title = "";
             Returningredients = "";
             directions = "";
-          
+            Label1.Visible = false;
 
+            ingredients = TextBox1.Text;
             string recipe = await ApiProcessor.LoadComic(ingredients);
             string[] SplitRec = recipe.Split();
             SplitRec[SplitRec.Length - 1] = (SplitRec[SplitRec.Length - 1].Split('"'))[0];
@@ -76,6 +94,8 @@ namespace RapidChef
 
 
             Button1.Visible = true;
+            
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)

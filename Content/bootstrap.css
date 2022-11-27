@@ -118,7 +118,7 @@ optgroup,
 select,
 textarea {
   color: inherit;
-    margin-left: 10px;
+    margin-left: 0px;
     margin-right: 0;
     margin-bottom: 0;
 }
@@ -4354,7 +4354,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 18px;
   line-height: 20px;
     width: 137px;
-    margin-left: 34px;
+    margin-left: 11px;
     margin-top: 15px;
     padding-left: 15px;
     padding-right: 15px;

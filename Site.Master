@@ -98,10 +98,10 @@
                  </div>
              </div>
              <div class="item5">
-                 <p>&copy; <%: DateTime.Now.Year %> - RapidChef (ASP.NET Application)</p>
+                 <p>&nbsp;&nbsp;&nbsp;&nbsp; © <%: DateTime.Now.Year %> - RapidChef (ASP.NET Application)</p>
 
                  <div class="col-md-12">
-                     <span class="pull-right" style="margin-right: 20px;">
+                     <span class="pull-right" style="margin-right: 60px;">
                          <a runat="server" href="~/Privacy" style="color: #000000">Privacy</a>
                      </span>
                  </div>
