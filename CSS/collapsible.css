@@ -12,7 +12,8 @@
 
     .active, .collapsible:hover {
         background-color: #555;
-    }
+    padding-left: 0px;
+}
 
     .collapsible:after {
         content: '\002B';

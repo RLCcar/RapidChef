@@ -72,14 +72,16 @@
              
                  <div>
                      <!-- Login table and fields -->
-                     <asp:TextBox runat="server" ID="TextBox1" type="text" placeholder="Email Address" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
-                     <asp:TextBox runat="server" ID="TextBox2" type="password" placeholder="Password" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
-                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" ViewState="false" CssClass="btn btn-default" />
-                     <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" CssClass="btn btn-default" />
+                     
 
-                     <asp:Button ID="Button3" runat="server" Text="User" Visible="false" OnClick="Button3_Click" CssClass="btn btn-default" />
+                     <asp:TextBox runat="server" ID="TextBox1" type="text" placeholder="Email Address" OnTextChanged="TextBox1_TextChanged" style="position:relative; float:right; top: -25px; left: -457px; width: 180px; height: 30px;" CssClass="active right"></asp:TextBox>
+                     <asp:TextBox runat="server" ID="TextBox2" type="password" placeholder="Password" OnTextChanged="TextBox2_TextChanged" style="position:relative; float:right; top: -25px; left: -80px; width: 180px; height: 30px;" CssClass="active right"></asp:TextBox>
 
-                     <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible="false" CssClass="btn btn-default" />
+                     <asp:Button ID="Button3" runat="server" Text="User" Visible="false" OnClick="Button3_Click" CssClass="btn btn-default" style="position:relative; float:right; top: -30px; left: -355px; width: 90px; height: 30px;" />
+
+                     <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Logout" Visible="false" CssClass="btn btn-default" style="position:relative; float:right; top: -30px; left: -115px; width: 90px; height: 30px;"  />
+                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Enter" ViewState="false" CssClass="btn btn-default" style="position:relative; float:right; top: -30px; left: 208px; width: 90px; height: 30px;" />
+                     <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register" CssClass="btn btn-default" style="position:relative; float:right; top: -30px; left: 405px; width: 90px; height: 30px;" />
                  </div>
              </div>
 
