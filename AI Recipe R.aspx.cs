@@ -159,7 +159,7 @@ namespace RapidChef
             //Required
             cmd.Parameters.AddWithValue("@recipeName", title);
             cmd.Parameters.AddWithValue("@datePosted", datePosted);
-            cmd.Parameters.AddWithValue("@description", "Good");
+            cmd.Parameters.AddWithValue("@description", "This recipe was generated using AI");
             cmd.Parameters.AddWithValue("@directions", directions);
             cmd.Parameters.AddWithValue("@postedByuser", 888);
             // if (tag1 != null)
