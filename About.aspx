@@ -9,6 +9,7 @@
 --%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <br /><br />    
     <h2><%: Title %></h2>
     <h3>About RapidChef</h3>
     <p>RapidChef is a senior project created at University of Houston: Clear Lake by a team of six students in the Fall 2022 Semester.</p>
