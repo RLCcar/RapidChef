@@ -65,13 +65,20 @@ namespace RapidChef
             
             while (!SplitRec[i].Equals("ingredients:"))
             {
-                title = title + " " + SplitRec[i];
+           
+                    title = title + " " + SplitRec[i];
+                
                 i = i + 1;
             }
             i = i + 1;
+            
             while (!SplitRec[i].Equals("directions:"))
             {
-                Returningredients = Returningredients + " " + SplitRec[i];
+          
+                {
+                    Returningredients = Returningredients + " " + SplitRec[i];
+
+                }
                 i = i + 1;
             }
             i = i + 1;
@@ -141,7 +148,8 @@ namespace RapidChef
 
             /* DEBUG: Set up some preset ingrIDs and test later */
 
-            string[] spliIngr = ingredients.Split();
+            string[] spliIngr = ingredients.Split(',');
+           
            // for (int i = 0; i < spliIngr.Length; i++)
            // {
            //     if (String.IsNullOrEmpty(spliIngr[i]))
@@ -172,18 +180,27 @@ namespace RapidChef
             // cmd.Parameters.AddWithValue("@tag3", tag3);
 
 
+
+
             if (spliIngr.Length < 15)
             {
                 int i = 15 - spliIngr.Length;
 
-                for (int j = 0; j < i; j++)
+        for (int j = 0; j < i; j++)
                 {
                     ingredients = ingredients + " ";
                 }
                 spliIngr = ingredients.Split();
+              
             }
-           
-                cmd.Parameters.AddWithValue("@Ingredient1", spliIngr[0]);
+            for (int i = 0; i < spliIngr.Length; i++)
+            {
+                spliIngr[i] = spliIngr[i].Replace(",","");
+            }
+
+
+
+            cmd.Parameters.AddWithValue("@Ingredient1", spliIngr[0]);
                 cmd.Parameters.AddWithValue("@Ingredient2", spliIngr[1]);
                 cmd.Parameters.AddWithValue("@Ingredient3", spliIngr[2]);
                 cmd.Parameters.AddWithValue("@Ingredient4", spliIngr[3]);

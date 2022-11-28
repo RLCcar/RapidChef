@@ -432,7 +432,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="AccountView.aspx" />
     <Content Include="AI Recipe R.aspx" />
     <Content Include="bin\RapidChef.dll" />
     <Content Include="bin\RapidChef.pdb" />
@@ -518,13 +517,6 @@
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountView.aspx.cs">
-      <DependentUpon>AccountView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AccountView.aspx.designer.cs">
-      <DependentUpon>AccountView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AI Recipe R.aspx.cs">
       <DependentUpon>AI Recipe R.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
