@@ -147,7 +147,8 @@ namespace RapidChef
             //}
 
             /* DEBUG: Set up some preset ingrIDs and test later */
-
+            
+         
             string[] spliIngr = ingredients.Split(',');
            
            // for (int i = 0; i < spliIngr.Length; i++)
@@ -182,39 +183,49 @@ namespace RapidChef
 
 
 
-            if (spliIngr.Length < 15)
-            {
-                int i = 15 - spliIngr.Length;
+            //if (spliIngr.Length < 15)
+            //{
+            //    int i = 15 - spliIngr.Length;
 
-        for (int j = 0; j < i; j++)
+
+
+            //for (int j = 0; j < i; j++)
+            //  {
+            //     ingredients = ingredients + " ";
+            // }
+            // spliIngr = ingredients.Split(',');
+
+
+            //  }
+            //for (int i = 0; i < spliIngr.Length; i++)
+            //  {
+            //    spliIngr[i] = spliIngr[i].Replace(",","");
+            // }
+
+
+            for (int i = 0; i < 15; i++)
+            {
+                if (i < spliIngr.Length)
                 {
-                    ingredients = ingredients + " ";
+                    cmd.Parameters.AddWithValue("@Ingredient" + (i + 1), spliIngr[i]);
                 }
-                spliIngr = ingredients.Split();
-              
+                else
+                    cmd.Parameters.AddWithValue("@Ingredient" + (i + 1), " ");
             }
-            for (int i = 0; i < spliIngr.Length; i++)
-            {
-                spliIngr[i] = spliIngr[i].Replace(",","");
-            }
-
-
-
-            cmd.Parameters.AddWithValue("@Ingredient1", spliIngr[0]);
-                cmd.Parameters.AddWithValue("@Ingredient2", spliIngr[1]);
-                cmd.Parameters.AddWithValue("@Ingredient3", spliIngr[2]);
-                cmd.Parameters.AddWithValue("@Ingredient4", spliIngr[3]);
-                cmd.Parameters.AddWithValue("@Ingredient5", spliIngr[4]);
-                cmd.Parameters.AddWithValue("@Ingredient6", spliIngr[5]);
-                cmd.Parameters.AddWithValue("@Ingredient7", spliIngr[6]);
-                cmd.Parameters.AddWithValue("@Ingredient8", spliIngr[7]);
-                cmd.Parameters.AddWithValue("@Ingredient9", spliIngr[8]);
-                cmd.Parameters.AddWithValue("@Ingredient10", spliIngr[9]);
-                cmd.Parameters.AddWithValue("@Ingredient11", spliIngr[10]);
-                cmd.Parameters.AddWithValue("@Ingredient12", spliIngr[11]);
-                cmd.Parameters.AddWithValue("@Ingredient13", spliIngr[12]);
-                cmd.Parameters.AddWithValue("@Ingredient14", spliIngr[13]);
-                cmd.Parameters.AddWithValue("@Ingredient15", spliIngr[14]);
+               // cmd.Parameters.AddWithValue("@Ingredient2", spliIngr[1]);
+               // cmd.Parameters.AddWithValue("@Ingredient3", spliIngr[2]);
+               // cmd.Parameters.AddWithValue("@Ingredient4", spliIngr[3]);
+               // cmd.Parameters.AddWithValue("@Ingredient5", spliIngr[4]);
+               // cmd.Parameters.AddWithValue("@Ingredient6", spliIngr[5]);
+                //cmd.Parameters.AddWithValue("@Ingredient7", spliIngr[6]);
+                //cmd.Parameters.AddWithValue("@Ingredient8", spliIngr[7]);
+                //cmd.Parameters.AddWithValue("@Ingredient9", spliIngr[8]);
+                //cmd.Parameters.AddWithValue("@Ingredient10", spliIngr[9]);
+                //cmd.Parameters.AddWithValue("@Ingredient11", spliIngr[10]);
+                //cmd.Parameters.AddWithValue("@Ingredient12", spliIngr[11]);
+                //cmd.Parameters.AddWithValue("@Ingredient13", spliIngr[12]);
+                //cmd.Parameters.AddWithValue("@Ingredient14", spliIngr[13]);
+                //cmd.Parameters.AddWithValue("@Ingredient15", spliIngr[14]);
                
                 try
             {
@@ -239,5 +250,7 @@ namespace RapidChef
         {
             ingredients = TextBox1.Text;
         }
+
+
     }
 }
