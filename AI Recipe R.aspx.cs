@@ -56,6 +56,7 @@ namespace RapidChef
             Returningredients = "";
             directions = "";
             Label1.Visible = false;
+            ingredients = "";
 
             ingredients = TextBox1.Text;
             string recipe = await ApiProcessor.LoadComic(ingredients);
